@@ -528,7 +528,7 @@ function renderClosing(slide) {
                 <div class="contact-val">(+61) 410 377 289</div>
               </div>
             </a>
-            <a class="contact-card" href="https://linkedin.com/in/advay-kumar" target="_blank" rel="noopener">
+            <a class="contact-card" href="https://www.linkedin.com/in/advay-kumar-2a9ab6247/" target="_blank" rel="noopener">
               <div class="contact-icon-wrap">in</div>
               <div>
                 <div class="contact-type">LinkedIn</div>
