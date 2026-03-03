@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "deckId": "advay-kumar-personal-site",
+    "title": "Advay Kumar",
+    "theme": "Midnight Glass"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "headline": "Advay Kumar",
+      "subheadline": "Electrical & Computer Systems Engineering • AI Automation • Robotics/XR Research",
+      "bullets": [
+        "Monash University — B.E. (ECSE) + B.Com (Grad 2026)",
+        "GPA 3.906/4.00 • WAM 85.981",
+        "Dean’s Honours List: 2022–2024",
+        "Melbourne, Australia"
+      ],
+      "note": "Use Space / ← → to navigate"
+    },
+    {
+      "type": "content",
+      "headline": "Education",
+      "subheadline": "Monash University — Graduation 2026",
+      "bullets": [
+        "B.E. Electrical & Computer Systems Engineering",
+        "B.Com (Commerce)",
+        "GPA 3.906/4.00 • WAM 85.981",
+        "Dean’s Honours List (2022, 2023, 2024)",
+        "Strengths: AI, systems, statistics, networks",
+        "Coursework: ML, AI, DSA, circuits, power"
+      ]
+    },
+    {
+      "type": "content",
+      "headline": "What I build",
+      "subheadline": "From prototypes to enterprise-ready delivery",
+      "bullets": [
+        "AI-assisted reporting + governance analytics",
+        "XR teleoperation systems for robot correction",
+        "Executive documentation (HTML/CSS/JS macros)",
+        "Research pipelines: study → analysis → publication",
+        "End-to-end engineering: hardware to software"
+      ]
+    },
+    {
+      "type": "section",
+      "headline": "Experience",
+      "subheadline": "Industry + research, with measurable impact"
+    },
+    {
+      "type": "content",
+      "headline": "ANZ Bank",
+      "subheadline": "Enterprise Architecture Technology Intern (AI Automation) • Nov 2025 – Feb 2026",
+      "bullets": [
+        "Built Copilot-assisted reporting for governance data",
+        "Validated outputs vs historical manual reports",
+        "Automated BAU processes (~4 hrs/week saved)",
+        "Shipped exec-facing Confluence/SharePoint artifacts",
+        "Enhanced templates: risk + total cost of ownership",
+        "Socialised changes at Architecture Working Group"
+      ]
+    },
+    {
+      "type": "content",
+      "headline": "Monash Robotics",
+      "subheadline": "Research Assistant • Feb 2024 – Oct 2025",
+      "bullets": [
+        "Amazon-funded study on VR/MR for warehouses",
+        "Published full paper at HRI 2025 (ACM)",
+        "Built VR/MR robot-arm correction system (Unity + ROS)",
+        "Designed and ran a multi-condition user study",
+        "Messaging via ROS TCP Endpoint + Connector"
+      ],
+      "note": "Paper: dl.acm.org/doi/10.5555/3721488.3721553"
+    },
+    {
+      "type": "content",
+      "headline": "Research Intern",
+      "subheadline": "Franka Panda + Meta Quest 3 • Nov 2023 – Feb 2024",
+      "bullets": [
+        "Controlled Franka Panda with MoveIt + ROS",
+        "Built Quest 3 VR interface in Unity (C#)",
+        "Integrated VR interactions with ROS nodes",
+        "Drafted proposal + thesis + poster in Overleaf"
+      ]
+    },
+    {
+      "type": "content",
+      "headline": "Teaching & Customer Experience",
+      "subheadline": "VCE Tutor • Officeworks (Work Experience)",
+      "bullets": [
+        "Tutored VCE Methods + Software Development",
+        "Built study plans and targeted feedback loops",
+        "Customer support in-store + print/copy assistance",
+        "Used PDT scanners during stocktake and pricing"
+      ]
+    },
+    {
+      "type": "section",
+      "headline": "Projects & Public Impact",
+      "subheadline": "Technical depth, real-world applications"
+    },
+    {
+      "type": "content",
+      "headline": "Parliamentary Inquiry",
+      "subheadline": "Generative AI in Education • Nov 2023",
+      "bullets": [
+        "Hosted House Standing Committee site visit",
+        "Demoed classroom GenAI prototype + safeguards",
+        "Translated capability → benefits, limits, risks",
+        "Contributed to committee Q&A",
+        "Helped inform inquiry focus and direction"
+      ]
+    },
+    {
+      "type": "content",
+      "headline": "Microfluidics Analysis",
+      "subheadline": "ResNet34 sperm-cell selection • Jan – Jun 2023",
+      "bullets": [
+        "Optimised and maintained a ResNet34 model",
+        "Achieved 90% accuracy on cell classification",
+        "Work may support Monash IVF from 2026"
+      ]
+    },
+    {
+      "type": "content",
+      "headline": "Bio-acoustics Monitoring",
+      "subheadline": "LSTM audio classification • Jun – Nov 2022",
+      "bullets": [
+        "Built multi-head 2-way LSTM model",
+        "Achieved 80% accuracy for bird species",
+        "Cut analysis time: 12 hours → 30 minutes",
+        "Supports endangered-species monitoring"
+      ]
+    },
+    {
+      "type": "content",
+      "headline": "Skills",
+      "subheadline": "Hands-on across software, robotics, and systems",
+      "bullets": [
+        "Programming: Python, C/C++, C#, SQL, R, MATLAB",
+        "Robotics/XR: ROS, MoveIt, Unity, Meta Quest",
+        "Hardware: Verilog, VHDL, RISC-V assembly",
+        "Web: HTML, CSS, JavaScript",
+        "Tools: Git, Jupyter, VS Code, Android Studio",
+        "Engineering: CST, LTspice, PowerWorld"
+      ]
+    },
+    {
+      "type": "content",
+      "headline": "Awards & Recognition",
+      "bullets": [
+        "AIIA Innovation Awards 2022 — State Finalist",
+        "Australian Defence Force Future Innovators Award 2021",
+        "Motorola Solutions Leader Scholarship 2023",
+        "Achieving Potential Access Scholarship 2022"
+      ]
+    },
+    {
+      "type": "closing",
+      "headline": "Let’s connect",
+      "subheadline": "Open to grad roles, research, and ambitious builds",
+      "bullets": [
+        "Email: advaykumar2004@gmail.com",
+        "Phone: +61 410 377 289",
+        "LinkedIn: Advay Kumar",
+        "GitHub: AKoder123"
+      ],
+      "note": "Tip: Shift + Space rewinds • Export PDF from the top bar"
+    }
+  ]
+}
