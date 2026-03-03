@@ -77,6 +77,9 @@ function getSlideClass(type) {
   const classMap = {
     'title': 'slide-title',
     'content': 'slide-content-card',
+    'experience': 'slide-content-card',
+    'projects': 'slide-content-card',
+    'awards': 'slide-content-card',
     'beforeAfter': 'slide-content-card',
     'closing': 'slide-closing'
   };
@@ -87,18 +90,125 @@ function getSlideContent(slide) {
   switch (slide.type) {
     case 'title':
       return `
+        <div class="profile-image-container" data-animate="scale">
+          <img src="profile.png" alt="Profile" class="profile-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'profile-placeholder\\'>AK</div>';">
+        </div>
         <h1 class="headline" data-animate="fade-up">${slide.headline}</h1>
         <p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>
         ${slide.note ? `<span class="note" data-animate="fade-up">${slide.note}</span>` : ''}
       `;
     
     case 'content':
+      // Check if it's a stats slide
+      if (slide.stats) {
+        return `
+          <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
+          ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
+          <div class="stats-grid" data-animate="fade-up">
+            ${slide.stats.map(stat => `
+              <div class="stat-card">
+                <div class="stat-value">${stat.value}</div>
+                <div class="stat-label">${stat.label}</div>
+              </div>
+            `).join('')}
+          </div>
+          ${slide.skillTags ? `
+            <div class="skill-cloud" data-animate="fade-up">
+              ${slide.skillTags.map(tag => `<span class="skill-tag">${tag}</span>`).join('')}
+            </div>
+          ` : ''}
+        `;
+      }
+      // Check if it's a timeline slide
+      if (slide.timeline) {
+        return `
+          <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
+          ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
+          <div class="timeline" data-animate="fade-up">
+            ${slide.timeline.map(item => `
+              <div class="timeline-item">
+                <div class="timeline-content">
+                  <div class="timeline-title">${item.title}</div>
+                  <div class="timeline-subtitle">${item.subtitle}</div>
+                  <div class="timeline-desc">${item.desc}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+      // Default content with cards
       return `
         <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
         ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
-        <ul class="bullet-list" data-animate="fade-up">
-          ${slide.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
-        </ul>
+        <div class="experience-card" data-animate="fade-up">
+          <ul class="bullet-list">
+            ${slide.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    
+    case 'experience':
+      return `
+        <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
+        ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
+        ${slide.experiences.map((exp, i) => `
+          <div class="experience-card" data-animate="fade-up" style="transition-delay: ${0.1 * (i + 1)}s">
+            <div class="card-header">
+              <div>
+                <div class="card-title">${exp.title}</div>
+                <div class="card-subtitle">${exp.company}</div>
+              </div>
+              <span class="card-date">${exp.date}</span>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">${exp.description}</p>
+            ${exp.tags ? `
+              <div class="card-tags">
+                ${exp.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+        `).join('')}
+      `;
+    
+    case 'projects':
+      return `
+        <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
+        ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
+        <div class="project-grid">
+          ${slide.projects.map((proj, i) => `
+            <div class="project-card" data-animate="fade-up" style="transition-delay: ${0.1 * (i + 1)}s">
+              <div class="project-icon">${proj.icon}</div>
+              <div class="project-title">${proj.title}</div>
+              <div class="project-desc">${proj.description}</div>
+              <div class="project-stats">
+                ${proj.stats.map(stat => `
+                  <div class="project-stat">
+                    <span class="stat-icon">${stat.icon}</span>
+                    <span>${stat.value}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    
+    case 'awards':
+      return `
+        <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
+        ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
+        <div class="awards-grid">
+          ${slide.awards.map((award, i) => `
+            <div class="award-card" data-animate="fade-up" style="transition-delay: ${0.1 * (i + 1)}s">
+              <div class="award-icon">${award.icon}</div>
+              <div class="award-content">
+                <div class="award-title">${award.title}</div>
+                <div class="award-year">${award.year}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
       `;
     
     case 'beforeAfter':
@@ -107,15 +217,15 @@ function getSlideContent(slide) {
         <div class="before-after-container">
           <div class="before-after-card" data-animate="fade-left">
             <h3>${slide.left.title}</h3>
-            <ul class="bullet-list">
-              ${slide.left.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
-            </ul>
+            <div class="skill-cloud">
+              ${slide.left.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
+            </div>
           </div>
           <div class="before-after-card" data-animate="fade-right">
             <h3>${slide.right.title}</h3>
-            <ul class="bullet-list">
-              ${slide.right.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
-            </ul>
+            <div class="skill-cloud">
+              ${slide.right.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
+            </div>
           </div>
         </div>
       `;
@@ -125,11 +235,11 @@ function getSlideContent(slide) {
         <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
         <p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>
         <div class="contact-grid" data-animate="fade-up">
-          ${slide.bullets.map((bullet, i) => `
-            <div class="contact-item">
-              <span class="contact-icon">${getContactIcon(i)}</span>
-              <span>${bullet}</span>
-            </div>
+          ${slide.contacts.map((contact, i) => `
+            <a href="${contact.link}" class="contact-item" target="${contact.link.startsWith('http') ? '_blank' : '_self'}" rel="${contact.link.startsWith('http') ? 'noopener noreferrer' : ''}">
+              <span class="contact-icon">${contact.icon}</span>
+              <span>${contact.text}</span>
+            </a>
           `).join('')}
         </div>
       `;
@@ -137,11 +247,6 @@ function getSlideContent(slide) {
     default:
       return `<p>Unknown slide type: ${slide.type}</p>`;
   }
-}
-
-function getContactIcon(index) {
-  const icons = ['✉', '☎', 'in', 'gh'];
-  return icons[index] || '→';
 }
 
 // ============================================

@@ -14,140 +14,177 @@
     {
       "type": "content",
       "headline": "Education",
-      "bullets": [
-        "B.E. Electrical & Computer Systems Engineering + B.Commerce",
-        "Monash University, Melbourne — Graduation 2026",
-        "GPA: 3.906/4.00 | WAM: 85.981",
-        "Dean's Honours List 2022, 2023, 2024"
+      "subheadline": "Monash University, Melbourne",
+      "stats": [
+        { "value": "3.91", "label": "GPA / 4.00" },
+        { "value": "85.98", "label": "WAM" },
+        { "value": "3x", "label": "Dean's Honours List" },
+        { "value": "2026", "label": "Graduation Year" }
+      ],
+      "skillTags": [
+        "Computer Organization & Programming",
+        "Machine Learning",
+        "Artificial Intelligence",
+        "Data Structures & Algorithms",
+        "Strategic Management",
+        "Supply Chain Fundamentals"
+      ]
+    },
+    {
+      "type": "experience",
+      "headline": "Professional Experience",
+      "subheadline": "Enterprise & Research Roles",
+      "experiences": [
+        {
+          "title": "Enterprise Architecture Technology Intern",
+          "company": "ANZ Bank — AI Automation",
+          "date": "Nov 2025 – Feb 2026",
+          "description": "Developed AI-assisted reporting solutions using Copilot and advanced prompt engineering. Automated BAU processes saving ~4 hours per week. Built enterprise Confluence/SharePoint solutions.",
+          "tags": ["AI Automation", "Copilot", "HTML/CSS/JS", "Governance"]
+        },
+        {
+          "title": "Research Assistant",
+          "company": "Monash Robotics",
+          "date": "Feb 2024 – Oct 2025",
+          "description": "Published Amazon-funded VR/MR warehouse error correction research. Full paper at HRI 2025 ACM conference. Built VR/MR robot arm control system using ROS & Unity.",
+          "tags": ["VR/MR", "ROS", "Unity", "Research Publication"]
+        },
+        {
+          "title": "Research Intern",
+          "company": "Monash Robotics",
+          "date": "Nov 2023 – Feb 2024",
+          "description": "Controlled Franka Panda robot using MoveIt & ROS. Developed Meta Quest 3 VR interface in C# / Unity. Created research proposal & thesis presentation.",
+          "tags": ["Robotics", "C#", "Unity", "MoveIt"]
+        }
+      ]
+    },
+    {
+      "type": "projects",
+      "headline": "Featured Projects",
+      "subheadline": "AI & Machine Learning Applications",
+      "projects": [
+        {
+          "icon": "🔬",
+          "title": "Microfluidics Analysis",
+          "description": "ResNet-34 model for sperm cell selection aiding IVF treatment",
+          "stats": [
+            { "icon": "✓", "value": "90% Accuracy" },
+            { "icon": "🏥", "value": "Monash IVF 2026" }
+          ]
+        },
+        {
+          "icon": "🐦",
+          "title": "Bio-Acoustics Monitoring",
+          "description": "LSTM neural network for endangered bird species classification",
+          "stats": [
+            { "icon": "✓", "value": "80% Accuracy" },
+            { "icon": "⚡", "value": "12hr → 30min" }
+          ]
+        },
+        {
+          "icon": "🤖",
+          "title": "VR Robot Control System",
+          "description": "Mixed Reality interface for remote warehouse error correction",
+          "stats": [
+            { "icon": "📄", "value": "HRI 2025" },
+            { "icon": "🔧", "value": "ROS + Unity" }
+          ]
+        }
       ]
     },
     {
       "type": "content",
-      "headline": "Experience: ANZ Bank",
-      "subheadline": "Enterprise Architecture Technology Intern (AI Automation)",
-      "bullets": [
-        "Developed AI-assisted reporting using Copilot & prompt engineering",
-        "Automated BAU processes — saved ~4 hours per week",
-        "Built enterprise Confluence/SharePoint solutions with HTML/CSS/JS",
-        "Enhanced architecture governance templates with risk & TCO analysis"
-      ]
-    },
-    {
-      "type": "content",
-      "headline": "Experience: Monash Robotics",
-      "subheadline": "Research Assistant | Feb 2024 – Oct 2025",
-      "bullets": [
-        "Published Amazon-funded VR/MR warehouse error correction research",
-        "Full paper at HRI 2025 — ACM Digital Library",
-        "Built VR/MR robot arm control system using ROS & Unity",
-        "Designed user studies evaluating remote error correction effectiveness"
-      ]
-    },
-    {
-      "type": "content",
-      "headline": "Research Internship",
-      "subheadline": "Monash Robotics | Nov 2023 – Feb 2024",
-      "bullets": [
-        "Controlled Franka Panda robot using MoveIt & ROS",
-        "Developed Meta Quest 3 VR interface in C# / Unity",
-        "Created research proposal & thesis presentation"
-      ]
-    },
-    {
-      "type": "content",
-      "headline": "Leadership: Monash DeepNeuron",
-      "subheadline": "AI/Deep Learning Lead | June 2023 – July 2024",
-      "bullets": [
-        "Led AI/ML projects & supervised technical teams",
-        "Recruited & mentored AI/Deep Learning members",
-        "Collaborated with professors & corporate partners",
-        "Evaluated and sourced future research projects"
-      ]
-    },
-    {
-      "type": "content",
-      "headline": "Project: Microfluidics Analysis",
-      "subheadline": "ResNet-34 Model for Sperm Cell Selection",
-      "bullets": [
-        "Achieved 90% accuracy on cell classification",
-        "Research adopted by Monash IVF from 2026",
-        "Aids in IVF treatment decisions"
-      ]
-    },
-    {
-      "type": "content",
-      "headline": "Project: Bio-Acoustics Monitoring",
-      "subheadline": "LSTM Neural Network for Endangered Bird Classification",
-      "bullets": [
-        "Multi-head 2-way LSTM for audio analysis",
-        "80% classification accuracy",
-        "Reduced analysis time from 12 hours to 30 minutes"
-      ]
-    },
-    {
-      "type": "content",
-      "headline": "Parliamentary Inquiry",
-      "subheadline": "Australian Federal Government | Nov 2023",
-      "bullets": [
-        "Hosted House Standing Committee site visit",
-        "Demonstrated GenAI classroom use cases",
-        "Contributed to parliamentary Q&A on AI in education",
-        "Covered responsible AI, privacy & academic integrity"
+      "headline": "Leadership & Impact",
+      "subheadline": "Monash DeepNeuron & Parliamentary Engagement",
+      "timeline": [
+        {
+          "title": "AI/Deep Learning Lead",
+          "subtitle": "Monash DeepNeuron | June 2023 – July 2024",
+          "desc": "Led AI/ML projects, supervised technical teams, recruited & mentored members, collaborated with professors & corporate partners."
+        },
+        {
+          "title": "Parliamentary Inquiry Host",
+          "subtitle": "Australian Federal Government | Nov 2023",
+          "desc": "Hosted House Standing Committee site visit for Generative AI in Education inquiry. Demonstrated classroom GenAI use cases."
+        }
       ]
     },
     {
       "type": "beforeAfter",
       "headline": "Technical Skills",
       "left": {
-        "title": "Programming",
-        "bullets": [
-          "Python, C++, C, C#",
-          "HTML/CSS, SQL, MATLAB",
-          "Flutter/Dart, R",
-          "ROS, Assembly (RISC-V)",
-          "Verilog, VHDL"
+        "title": "Programming Languages",
+        "items": [
+          "Python",
+          "C++",
+          "C",
+          "C#",
+          "HTML/CSS",
+          "SQL",
+          "MATLAB",
+          "Flutter/Dart",
+          "R",
+          "ROS",
+          "Assembly (RISC-V)",
+          "Verilog",
+          "VHDL"
         ]
       },
       "right": {
         "title": "Tools & Platforms",
-        "bullets": [
-          "Unity, Meta Quest Dev Hub",
-          "Android Studio, PyCharm",
-          "Jupyter, Git, VS Code",
-          "MongoDB, MoveIt",
-          "LTspice, CST Solver"
+        "items": [
+          "Unity",
+          "Meta Quest Dev Hub",
+          "Android Studio",
+          "PyCharm",
+          "Jupyter",
+          "Git",
+          "VS Code",
+          "MongoDB",
+          "MoveIt",
+          "LTspice",
+          "CST Solver",
+          "Jira",
+          "PowerWorld"
         ]
       }
     },
     {
-      "type": "content",
-      "headline": "Management & Workflow",
-      "bullets": [
-        "Project Management with Jira",
-        "Task Planning with Gantt Charts",
-        "Workflow Optimization with Kanban",
-        "Cross-functional team collaboration"
-      ]
-    },
-    {
-      "type": "content",
+      "type": "awards",
       "headline": "Awards & Recognition",
-      "bullets": [
-        "AIIA Innovation Awards 2022 — State Finalist",
-        "ADF Future Innovators Award 2021",
-        "Motorola Solutions Leader Scholarship 2023",
-        "Achieving Potential Access Scholarship 2022"
+      "subheadline": "Industry Recognition & Scholarships",
+      "awards": [
+        {
+          "icon": "🏆",
+          "title": "AIIA Innovation Awards — State Finalist",
+          "year": "2022"
+        },
+        {
+          "icon": "🎖️",
+          "title": "ADF Future Innovators Award",
+          "year": "2021"
+        },
+        {
+          "icon": "💰",
+          "title": "Motorola Solutions Leader Scholarship",
+          "year": "2023"
+        },
+        {
+          "icon": "🎓",
+          "title": "Achieving Potential Access Scholarship",
+          "year": "2022"
+        }
       ]
     },
     {
       "type": "closing",
       "headline": "Let's Connect",
       "subheadline": "Open to opportunities in AI, Robotics & Engineering",
-      "bullets": [
-        "advaykumar2004@gmail.com",
-        "(+61) 410 377 289",
-        "linkedin.com/in/Advay-Kumar",
-        "github.com/AKoder123"
+      "contacts": [
+        { "icon": "✉", "text": "advaykumar2004@gmail.com", "link": "mailto:advaykumar2004@gmail.com" },
+        { "icon": "☎", "text": "(+61) 410 377 289", "link": "tel:+61410377289" },
+        { "icon": "in", "text": "LinkedIn", "link": "https://linkedin.com/in/Advay-Kumar" },
+        { "icon": "gh", "text": "GitHub", "link": "https://github.com/AKoder123" }
       ]
     }
   ]
