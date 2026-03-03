@@ -24,34 +24,39 @@ function renderTitle(slide) {
             <span class="ttag">Deep Learning</span>
           </div>
         </div>
-        <div class="title-panel" data-animate data-delay="3">
-          <div class="panel-row">
-            <span class="panel-key">University</span>
-            <span class="panel-val">Monash University</span>
+        <div class="title-right" data-animate data-delay="3">
+          <div class="profile-photo-wrap">
+            <img src="profile.jpg" alt="Advay Kumar" class="profile-photo" />
           </div>
-          <div class="panel-row">
-            <span class="panel-key">GPA</span>
-            <span class="panel-val highlight" data-count="3.906" data-decimals="3">3.906</span>
-          </div>
-          <div class="panel-row">
-            <span class="panel-key">WAM</span>
-            <span class="panel-val highlight">85.981</span>
-          </div>
-          <div class="panel-row">
-            <span class="panel-key">Dean's Honours</span>
-            <span class="panel-val">2022 · 2023 · 2024</span>
-          </div>
-          <div class="panel-row">
-            <span class="panel-key">Graduation</span>
-            <span class="panel-val">2026</span>
-          </div>
-          <div class="panel-row">
-            <span class="panel-key">Published</span>
-            <span class="panel-val highlight">HRI 2025 · ACM</span>
-          </div>
-          <div class="panel-row">
-            <span class="panel-key">Citizenship</span>
-            <span class="panel-val">Australian</span>
+          <div class="title-panel">
+            <div class="panel-row">
+              <span class="panel-key">University</span>
+              <span class="panel-val">Monash University</span>
+            </div>
+            <div class="panel-row">
+              <span class="panel-key">GPA</span>
+              <span class="panel-val highlight" data-count="3.906" data-decimals="3">3.906</span>
+            </div>
+            <div class="panel-row">
+              <span class="panel-key">WAM</span>
+              <span class="panel-val highlight">85.981</span>
+            </div>
+            <div class="panel-row">
+              <span class="panel-key">Dean's Honours</span>
+              <span class="panel-val">2022 · 2023 · 2024</span>
+            </div>
+            <div class="panel-row">
+              <span class="panel-key">Graduation</span>
+              <span class="panel-val">2026</span>
+            </div>
+            <div class="panel-row">
+              <span class="panel-key">Published</span>
+              <span class="panel-val highlight">HRI 2025 · ACM</span>
+            </div>
+            <div class="panel-row">
+              <span class="panel-key">Citizenship</span>
+              <span class="panel-val">Australian</span>
+            </div>
           </div>
         </div>
       </div>
@@ -528,7 +533,7 @@ function renderClosing(slide) {
                 <div class="contact-val">(+61) 410 377 289</div>
               </div>
             </a>
-            <a class="contact-card" href="https://www.linkedin.com/in/advay-kumar-2a9ab6247/" target="_blank" rel="noopener">
+            <a class="contact-card" href="https://linkedin.com/in/advay-kumar" target="_blank" rel="noopener">
               <div class="contact-icon-wrap">in</div>
               <div>
                 <div class="contact-type">LinkedIn</div>

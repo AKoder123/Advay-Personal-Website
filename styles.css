@@ -65,24 +65,11 @@ html, body {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-.logo-mark {
-  width: 32px; height: 32px;
-  background: var(--blue);
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #fff;
-  letter-spacing: 0.02em;
 }
 .logo-name {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
   color: var(--navy);
   letter-spacing: -0.01em;
 }
@@ -240,12 +227,35 @@ h2.headline {
 .slide-title .eyebrow { color: rgba(255,255,255,0.5); }
 .slide-title .eyebrow::before { background: rgba(255,255,255,0.3); }
 
-/* Layout: left copy, right stats panel */
+/* Layout: left copy, right column (photo + stats) */
 .title-layout {
   display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 60px;
+  grid-template-columns: 1fr 320px;
+  gap: 56px;
   align-items: center;
+}
+
+/* Right column wrapper */
+.title-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Profile photo */
+.profile-photo-wrap {
+  display: flex;
+  justify-content: center;
+}
+.profile-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid rgba(255,255,255,0.25);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  display: block;
 }
 
 /* Stats panel */
@@ -253,14 +263,14 @@ h2.headline {
   background: rgba(255,255,255,0.07);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: var(--radius-lg);
-  padding: 28px;
+  padding: 20px 24px;
   backdrop-filter: blur(8px);
 }
 .panel-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 0;
+  padding: 10px 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .panel-row:last-child { border-bottom: none; }
@@ -1060,7 +1070,7 @@ h2.headline {
 
 @media (max-width: 860px) {
   .title-layout { grid-template-columns: 1fr; }
-  .title-panel { display: none; }
+  .title-right { display: none; }
   .edu-layout { grid-template-columns: 1fr; }
   .edu-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .exp-layout { grid-template-columns: 1fr; }
