@@ -1,495 +1,833 @@
-/**
- * Advay Kumar Portfolio - Slide Presentation
- * Vanilla JS with PDF Export Support
- */
+/* ─── Advay Kumar · Portfolio · app.js ─── */
 
-// ============================================
-// STATE
-// ============================================
-let slidesData = [];
-let currentSlideIndex = 0;
-let isExporting = false;
+let slides = [];
+let current = 0;
 
-// ============================================
-// DOM ELEMENTS
-// ============================================
-const slideContainer = document.getElementById('slideContainer');
-const progressFill = document.querySelector('.progress-fill');
-const currentSlideEl = document.querySelector('.slide-counter .current');
-const totalSlidesEl = document.querySelector('.slide-counter .total');
-const exportBtn = document.getElementById('exportPdfBtn');
-const pdfStage = document.getElementById('pdfStage');
+/* ════════════════════════════════════════
+   SLIDE RENDERERS
+════════════════════════════════════════ */
 
-// ============================================
-// INITIALIZATION
-// ============================================
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadContent();
-  setupNavigation();
-  setupIntersectionObserver();
-  setupPdfExport();
-  updateProgress();
-});
-
-// ============================================
-// CONTENT LOADING
-// ============================================
-async function loadContent() {
-  try {
-    const response = await fetch('content.json');
-    const data = await response.json();
-    slidesData = data.slides;
-    totalSlidesEl.textContent = slidesData.length;
-    renderSlides();
-  } catch (error) {
-    console.error('Failed to load content:', error);
-    slideContainer.innerHTML = '<div class="slide"><div class="slide-content"><p style="text-align:center;color:#fff;">Error loading content. Please refresh.</p></div></div>';
-  }
-}
-
-function renderSlides() {
-  slideContainer.innerHTML = slidesData.map((slide, index) => createSlideHTML(slide, index)).join('');
-  
-  // Add decorative elements to title slide
-  const titleSlide = slideContainer.querySelector('.slide-title');
-  if (titleSlide) {
-    titleSlide.insertAdjacentHTML('beforeend', `
-      <div class="title-decoration title-decoration-1"></div>
-      <div class="title-decoration title-decoration-2"></div>
-    `);
-  }
-}
-
-function createSlideHTML(slide, index) {
-  const slideClass = getSlideClass(slide.type);
-  const content = getSlideContent(slide);
-  
+function renderTitle(slide) {
   return `
-    <section class="slide ${slideClass}" data-index="${index}" id="slide-${index}">
-      <div class="slide-content">
-        ${content}
+    <div class="slide-inner">
+      <div class="title-layout">
+        <div class="title-left">
+          <div class="eyebrow" data-animate data-delay="1">Portfolio · 2026</div>
+          <h1 class="headline" data-animate data-delay="2">${slide.headline}</h1>
+          <p class="subheadline" data-animate data-delay="3">${slide.subheadline || ''}</p>
+          <div class="title-tags" data-animate data-delay="4">
+            <span class="ttag">AI / ML</span>
+            <span class="ttag">Robotics</span>
+            <span class="ttag">Full-Stack</span>
+            <span class="ttag">Enterprise Architecture</span>
+            <span class="ttag">Research</span>
+            <span class="ttag">Deep Learning</span>
+          </div>
+        </div>
+        <div class="title-panel" data-animate data-delay="3">
+          <div class="panel-row">
+            <span class="panel-key">University</span>
+            <span class="panel-val">Monash University</span>
+          </div>
+          <div class="panel-row">
+            <span class="panel-key">GPA</span>
+            <span class="panel-val highlight" data-count="3.906" data-decimals="3">3.906</span>
+          </div>
+          <div class="panel-row">
+            <span class="panel-key">WAM</span>
+            <span class="panel-val highlight">85.981</span>
+          </div>
+          <div class="panel-row">
+            <span class="panel-key">Dean's Honours</span>
+            <span class="panel-val">2022 · 2023 · 2024</span>
+          </div>
+          <div class="panel-row">
+            <span class="panel-key">Graduation</span>
+            <span class="panel-val">2026</span>
+          </div>
+          <div class="panel-row">
+            <span class="panel-key">Published</span>
+            <span class="panel-val highlight">HRI 2025 · ACM</span>
+          </div>
+          <div class="panel-row">
+            <span class="panel-key">Citizenship</span>
+            <span class="panel-val">Australian</span>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+    <div class="scroll-cue" data-animate data-delay="6">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
   `;
 }
 
-function getSlideClass(type) {
-  const classMap = {
-    'title': 'slide-title',
-    'content': 'slide-content-card',
-    'experience': 'slide-content-card',
-    'projects': 'slide-content-card',
-    'awards': 'slide-content-card',
-    'beforeAfter': 'slide-content-card',
-    'closing': 'slide-closing'
-  };
-  return classMap[type] || 'slide-content-card';
+function renderEducation(slide) {
+  return `
+    <div class="slide-inner">
+      <div class="edu-layout">
+        <div class="edu-sidebar" data-animate data-delay="1">
+          <div class="edu-uni">Monash University</div>
+          <div class="edu-degree">
+            B.E. Electrical & Computer Systems Engineering<br>
+            + Bachelor of Commerce<br>
+            <em>Graduating 2026</em>
+          </div>
+          <div class="gpa-block" data-animate data-delay="2">
+            <div class="gpa-num" data-count="3.906" data-decimals="3">3.906</div>
+            <div class="gpa-sub">GPA / 4.00</div>
+          </div>
+          <div class="honours-list" data-animate data-delay="3">
+            <div class="honour-chip">🏅 Dean's Honours 2022</div>
+            <div class="honour-chip">🏅 Dean's Honours 2023</div>
+            <div class="honour-chip">🏅 Dean's Honours 2024</div>
+          </div>
+        </div>
+
+        <div class="edu-right" data-animate data-delay="2">
+          <div class="eyebrow">Course Modules</div>
+          <div class="edu-modules">
+            <div class="edu-module">
+              <div class="module-header">
+                <span class="module-name">Engineering Core</span>
+                <span class="module-count">4 disciplines</span>
+              </div>
+              <div class="module-items">
+                <span class="module-item">Computer Organisation & Programming</span>
+                <span class="module-item">Machine Learning</span>
+                <span class="module-item">Artificial Intelligence</span>
+                <span class="module-item">Data Structures & Algorithms</span>
+              </div>
+            </div>
+            <div class="edu-module">
+              <div class="module-header">
+                <span class="module-name">Systems & Hardware</span>
+                <span class="module-count">4 disciplines</span>
+              </div>
+              <div class="module-items">
+                <span class="module-item">Circuits, Power & Energy</span>
+                <span class="module-item">Networks</span>
+                <span class="module-item">RISC-V Architecture</span>
+                <span class="module-item">VHDL & Verilog</span>
+              </div>
+            </div>
+            <div class="edu-module">
+              <div class="module-header">
+                <span class="module-name">Commerce</span>
+                <span class="module-count">4 disciplines</span>
+              </div>
+              <div class="module-items">
+                <span class="module-item">Strategic Management</span>
+                <span class="module-item">Organisational Behaviour</span>
+                <span class="module-item">Social Issues in Organising</span>
+                <span class="module-item">Supply Chain Fundamentals</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gpa-track-wrap" data-animate data-delay="4">
+            <div class="gpa-track-label">
+              <span>GPA relative to maximum</span>
+              <span>97.65%</span>
+            </div>
+            <div class="gpa-track"><div class="gpa-fill" data-width="97.65"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
-function getSlideContent(slide) {
-  switch (slide.type) {
-    case 'title':
-      return `
-        <div class="profile-image-container" data-animate="scale">
-          <img src="profile.jpg" alt="Profile" class="profile-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'profile-placeholder\\'>AK</div>';">
-        </div>
-        <h1 class="headline" data-animate="fade-up">${slide.headline}</h1>
-        <p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>
-        ${slide.note ? `<span class="note" data-animate="fade-up">${slide.note}</span>` : ''}
-      `;
-    
-    case 'content':
-      // Check if it's a stats slide
-      if (slide.stats) {
-        return `
-          <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
-          ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
-          <div class="stats-grid" data-animate="fade-up">
-            ${slide.stats.map(stat => `
-              <div class="stat-card">
-                <div class="stat-value">${stat.value}</div>
-                <div class="stat-label">${stat.label}</div>
-              </div>
-            `).join('')}
+function renderANZ(slide) {
+  return `
+    <div class="slide-inner">
+      <div class="eyebrow" data-animate data-delay="1">Experience</div>
+      <div class="exp-layout">
+        <div class="exp-left" data-animate data-delay="2">
+          <h2 class="headline">ANZ Bank</h2>
+          <div class="exp-meta" style="margin-bottom:24px">
+            <div class="exp-dot"></div>
+            Enterprise Architecture · AI Automation Intern · Nov 2025 – Feb 2026
           </div>
-          ${slide.skillTags ? `
-            <div class="skill-cloud" data-animate="fade-up">
-              ${slide.skillTags.map(tag => `<span class="skill-tag">${tag}</span>`).join('')}
+
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                Built AI-assisted reporting with Copilot & prompt engineering —
+                <span class="tl-result">consistent analytics from governance data</span>
+              </div>
             </div>
-          ` : ''}
-        `;
-      }
-      // Check if it's a timeline slide
-      if (slide.timeline) {
-        return `
-          <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
-          ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
-          <div class="timeline" data-animate="fade-up">
-            ${slide.timeline.map(item => `
-              <div class="timeline-item">
-                <div class="timeline-content">
-                  <div class="timeline-title">${item.title}</div>
-                  <div class="timeline-subtitle">${item.subtitle}</div>
-                  <div class="timeline-desc">${item.desc}</div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                Automated BAU processes using AI
+                <span class="tl-pill">~4 hrs/week saved</span>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                Delivered executive-facing Confluence &amp; SharePoint artifacts using HTML / CSS / JS macros
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                Led governance template enhancements incorporating risk &amp; total cost of ownership analysis
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                Presented changes at Architecture Working Group forums; collaborated across architects, grads &amp; leadership
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-right" data-animate data-delay="3">
+          <div class="impact-card">
+            <div>
+              <div class="impact-title">Efficiency Impact</div>
+              <div class="impact-metric">
+                <div class="impact-num" data-count="4" data-decimals="0">4</div>
+                <div class="impact-label">hours saved per week via AI automation</div>
+              </div>
+            </div>
+            <div>
+              <div class="impact-title">Stakeholder Reach</div>
+              <div class="impact-metric">
+                <div class="impact-label" style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.5">
+                  Executive-visible documentation deployed across enterprise governance platforms
                 </div>
               </div>
-            `).join('')}
-          </div>
-        `;
-      }
-      // Default content with cards
-      return `
-        <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
-        ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
-        <div class="experience-card" data-animate="fade-up">
-          <ul class="bullet-list">
-            ${slide.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
-          </ul>
-        </div>
-      `;
-    
-    case 'experience':
-      return `
-        <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
-        ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
-        ${slide.experiences.map((exp, i) => `
-          <div class="experience-card" data-animate="fade-up" style="transition-delay: ${0.1 * (i + 1)}s">
-            <div class="card-header">
-              <div>
-                <div class="card-title">${exp.title}</div>
-                <div class="card-subtitle">${exp.company}</div>
-              </div>
-              <span class="card-date">${exp.date}</span>
             </div>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">${exp.description}</p>
-            ${exp.tags ? `
-              <div class="card-tags">
-                ${exp.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            <div>
+              <div class="impact-title">Tools & Stack</div>
+              <div class="used-strip">
+                <span class="used-chip">Copilot</span>
+                <span class="used-chip">Prompt Engineering</span>
+                <span class="used-chip">HTML / CSS / JS</span>
+                <span class="used-chip">Confluence</span>
+                <span class="used-chip">SharePoint</span>
+                <span class="used-chip">Jira</span>
               </div>
-            ` : ''}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderResearch(slide) {
+  return `
+    <div class="slide-inner">
+      <div class="eyebrow" data-animate data-delay="1">Research · Monash Robotics</div>
+      <h2 class="headline" data-animate data-delay="2">${slide.headline}</h2>
+      <p class="subheadline" data-animate data-delay="3">${slide.subheadline || ''}</p>
+
+      <div class="research-layout" data-animate data-delay="4">
+        <div class="pub-card">
+          <div class="pub-venue">
+            <div class="pub-venue-dot"></div>
+            Published · HRI 2025 · ACM Digital Library
+          </div>
+          <div class="pub-title">
+            VR &amp; Mixed Reality for Remote Warehouse Error Correction — Amazon-Funded Study
+          </div>
+          <div class="pub-sponsor">📦 Amazon-funded &nbsp;·&nbsp; Monash Robotics Lab &nbsp;·&nbsp; Feb 2024 – Oct 2025</div>
+          <a class="pub-link" href="https://dl.acm.org/doi/10.5555/3721488.3721553" target="_blank" rel="noopener">
+            View on ACM Digital Library ↗
+          </a>
+        </div>
+
+        <div class="tech-card">
+          <div>
+            <div class="tech-section-title">Technology Stack</div>
+            <div class="tech-tags">
+              <span class="tech-tag">ROS</span>
+              <span class="tech-tag">Unity / C#</span>
+              <span class="tech-tag">Meta Quest 3</span>
+              <span class="tech-tag">MoveIt</span>
+              <span class="tech-tag">ROS TCP Endpoint</span>
+              <span class="tech-tag">Franka Panda Arm</span>
+              <span class="tech-tag">Python</span>
+            </div>
+          </div>
+          <div>
+            <div class="tech-section-title">Key Deliverables</div>
+            <div class="deliverable-list">
+              <div class="deliverable">
+                <div class="del-check" style="background:#dbeafe; color:#1d4ed8">✓</div>
+                Full paper published at HRI 2025 — top-tier Human-Robot Interaction venue
+              </div>
+              <div class="deliverable">
+                <div class="del-check" style="background:#d1fae5; color:#059669">✓</div>
+                Remote VR + Mixed Reality robot arm error correction system
+              </div>
+              <div class="deliverable">
+                <div class="del-check" style="background:#fef3c7; color:#d97706">✓</div>
+                Formal user study design, execution, and analysis
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderDeepNeuron(slide) {
+  return `
+    <div class="slide-inner">
+      <div class="eyebrow" data-animate data-delay="1">Leadership · Monash DeepNeuron</div>
+      <h2 class="headline" data-animate data-delay="2">${slide.headline}</h2>
+      <p class="subheadline" data-animate data-delay="3">AI/DL Lead · June 2023 – July 2024</p>
+
+      <div class="dn-layout" data-animate data-delay="4">
+        <div class="role-cards">
+          <div class="role-card">
+            <div class="role-icon-wrap">⬡</div>
+            <div>
+              <div class="role-title">Technical Leadership</div>
+              <div class="role-sub">Led AI, Machine Learning & Deep Learning projects across the team pipeline</div>
+            </div>
+          </div>
+          <div class="role-card">
+            <div class="role-icon-wrap">◎</div>
+            <div>
+              <div class="role-title">Team Building</div>
+              <div class="role-sub">Recruited, onboarded, and mentored AI/DL engineers and researchers</div>
+            </div>
+          </div>
+          <div class="role-card">
+            <div class="role-icon-wrap">⊕</div>
+            <div>
+              <div class="role-title">External Relations</div>
+              <div class="role-sub">Collaborated with university professors, industry partners & corporate sponsors</div>
+            </div>
+          </div>
+          <div class="role-card">
+            <div class="role-icon-wrap">◈</div>
+            <div>
+              <div class="role-title">Project Sourcing</div>
+              <div class="role-sub">Evaluated and scoped future projects; maintained the team's technical roadmap</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="tech-section-title" style="color:var(--slate-400); font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:16px;">Team History</div>
+          <div class="dn-timeline">
+            <div class="dn-tl-item">
+              <div class="dn-tl-dot">01</div>
+              <div class="dn-tl-content">
+                <div class="dn-tl-label">Research Intern — Monash Robotics</div>
+                <div class="dn-tl-date">Nov 2023 – Feb 2024</div>
+              </div>
+            </div>
+            <div class="dn-tl-item">
+              <div class="dn-tl-dot">02</div>
+              <div class="dn-tl-content">
+                <div class="dn-tl-label">Bio-Acoustics Monitoring Model</div>
+                <div class="dn-tl-date">Jun – Nov 2022 &nbsp;·&nbsp; LSTM · 80% accuracy · 24× faster</div>
+              </div>
+            </div>
+            <div class="dn-tl-item">
+              <div class="dn-tl-dot">03</div>
+              <div class="dn-tl-content">
+                <div class="dn-tl-label">Microfluidics Analysis — Monash IVF</div>
+                <div class="dn-tl-date">Jan – Jun 2023 &nbsp;·&nbsp; ResNet-34 · 90% accuracy</div>
+              </div>
+            </div>
+            <div class="dn-tl-item">
+              <div class="dn-tl-dot">04</div>
+              <div class="dn-tl-content">
+                <div class="dn-tl-label">AI/DL Lead — DeepNeuron</div>
+                <div class="dn-tl-date">Jun 2023 – Jul 2024</div>
+              </div>
+            </div>
+            <div class="dn-tl-item">
+              <div class="dn-tl-dot">05</div>
+              <div class="dn-tl-content">
+                <div class="dn-tl-label">Research Assistant — Monash Robotics</div>
+                <div class="dn-tl-date">Feb 2024 – Oct 2025 &nbsp;·&nbsp; HRI 2025 Paper</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderProjects(slide) {
+  return `
+    <div class="slide-inner">
+      <div class="eyebrow" data-animate data-delay="1">Research Projects</div>
+      <h2 class="headline" data-animate data-delay="2">${slide.headline}</h2>
+
+      <div class="projects-grid" data-animate data-delay="3">
+        <div class="project-card">
+          <div class="project-stripe" style="background: linear-gradient(90deg, var(--blue), var(--blue-light))"></div>
+          <div class="proj-cat" style="background:#dbeafe; color:var(--blue);">Medical AI</div>
+          <div class="proj-title">Microfluidics Analysis — Sperm Cell Selection</div>
+          <div class="proj-metrics">
+            <div class="proj-metric">
+              <div class="proj-metric-val" style="color:var(--blue)">90%</div>
+              <div class="proj-metric-label">Classification Accuracy</div>
+            </div>
+            <div class="proj-metric">
+              <div class="proj-metric-val" style="color:var(--blue)">2026</div>
+              <div class="proj-metric-label">Planned Clinical Adoption</div>
+            </div>
+          </div>
+          <div class="proj-desc">
+            Optimised ResNet-34 model for sperm cell analysis and selection. Research may be adopted by Monash IVF from 2026 to improve IVF treatment outcomes.
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-stripe" style="background: linear-gradient(90deg, var(--green), #34d399)"></div>
+          <div class="proj-cat" style="background:#d1fae5; color:var(--green);">Ecology AI</div>
+          <div class="proj-title">Bio-Acoustics Monitoring — Endangered Species Classification</div>
+          <div class="proj-metrics">
+            <div class="proj-metric">
+              <div class="proj-metric-val" style="color:var(--green)">80%</div>
+              <div class="proj-metric-label">Classification Accuracy</div>
+            </div>
+            <div class="proj-metric">
+              <div class="proj-metric-val" style="color:var(--green)">24×</div>
+              <div class="proj-metric-label">Analysis Speed-Up</div>
+            </div>
+          </div>
+          <div class="proj-desc">
+            Multi-head 2-way LSTM for audio classification of endangered bird species. Reduced researcher analysis time from 12 hours to 30 minutes.
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderAwards(slide) {
+  return `
+    <div class="slide-inner">
+      <div class="eyebrow" data-animate data-delay="1">Awards &amp; Recognition</div>
+      <div class="awards-layout">
+        <div class="awards-left" data-animate data-delay="2">
+          <div class="parl-callout">
+            <div class="parl-icon">🏛️</div>
+            <div class="parl-title">Parliamentary AI Presenter</div>
+            <div class="parl-body">
+              Hosted and presented during a site visit by the House Standing Committee on Education, Employment and Training for the Parliamentary Inquiry into Generative AI in Education. November 2023.
+            </div>
+          </div>
+        </div>
+
+        <div class="awards-list" data-animate data-delay="3">
+          <div class="award-card">
+            <div class="award-emoji">🏆</div>
+            <div>
+              <div class="award-title">State Finalist — AIIA Innovation Awards</div>
+              <div class="award-sub">2022 · Computer Vision / Mask Detection System</div>
+            </div>
+          </div>
+          <div class="award-card">
+            <div class="award-emoji">🛡️</div>
+            <div>
+              <div class="award-title">ADF Future Innovators Award</div>
+              <div class="award-sub">Australian Defence Force 2021 · Face Mask Detection System</div>
+            </div>
+          </div>
+          <div class="award-card">
+            <div class="award-emoji">🎓</div>
+            <div>
+              <div class="award-title">Motorola Solutions Leader Scholarship</div>
+              <div class="award-sub">2023 · Awarded for academic leadership and achievement</div>
+            </div>
+          </div>
+          <div class="award-card">
+            <div class="award-emoji">📜</div>
+            <div>
+              <div class="award-title">Achieving &amp; Achieving Potential Access Scholarship</div>
+              <div class="award-sub">2022 · Monash University</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderSkills(slide) {
+  const cats = [
+    {
+      name: 'Languages',
+      items: ['Python', 'C++', 'C', 'C#', 'HTML / CSS', 'SQL', 'MATLAB', 'Verilog', 'VHDL', 'R', 'Flutter / Dart', 'Assembly RISC-V'],
+    },
+    {
+      name: 'Frameworks & Systems',
+      items: ['ROS', 'Unity', 'MoveIt', 'Git', 'MongoDB', 'Android Studio', 'PyCharm', 'Jupyter', 'VSCode', 'LTspice', 'PowerWorld', 'Meta Quest Dev Hub'],
+    },
+    {
+      name: 'AI & Engineering',
+      items: ['Machine Learning', 'Deep Learning', 'Computer Vision', 'Robotics', 'VR / MR', 'Prompt Engineering', 'Enterprise Architecture', 'Research'],
+    },
+    {
+      name: 'Project Management',
+      items: ['Jira', 'Confluence', 'SharePoint', 'Kanban', 'Gantt Charts', 'Working Groups', 'Workflow Optimisation'],
+    },
+  ];
+  return `
+    <div class="slide-inner">
+      <div class="eyebrow" data-animate data-delay="1">Technical Skills</div>
+      <h2 class="headline" data-animate data-delay="2">${slide.headline}</h2>
+
+      <div class="skills-layout" data-animate data-delay="3">
+        ${cats.map(cat => `
+          <div class="skill-cat">
+            <div class="skill-cat-header">
+              <span class="skill-cat-name">${cat.name}</span>
+              <span class="skill-cat-count">${cat.items.length} skills</span>
+            </div>
+            <div class="skill-chips">
+              ${cat.items.map(item => `<span class="skill-chip">${item}</span>`).join('')}
+            </div>
           </div>
         `).join('')}
-      `;
-    
-    case 'projects':
-      return `
-        <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
-        ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
-        <div class="project-grid">
-          ${slide.projects.map((proj, i) => `
-            <div class="project-card" data-animate="fade-up" style="transition-delay: ${0.1 * (i + 1)}s">
-              <div class="project-icon">${proj.icon}</div>
-              <div class="project-title">${proj.title}</div>
-              <div class="project-desc">${proj.description}</div>
-              <div class="project-stats">
-                ${proj.stats.map(stat => `
-                  <div class="project-stat">
-                    <span class="stat-icon">${stat.icon}</span>
-                    <span>${stat.value}</span>
-                  </div>
-                `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderClosing(slide) {
+  return `
+    <div class="slide-inner">
+      <div class="closing-layout">
+        <div class="closing-left">
+          <div class="eyebrow" data-animate data-delay="1">Get in Touch</div>
+          <h2 class="headline" data-animate data-delay="2">${slide.headline}</h2>
+          <p class="subheadline" data-animate data-delay="3">${slide.subheadline || ''}</p>
+
+          <div class="contact-grid" data-animate data-delay="4">
+            <a class="contact-card" href="mailto:advaykumar2004@gmail.com">
+              <div class="contact-icon-wrap">✉</div>
+              <div>
+                <div class="contact-type">Email</div>
+                <div class="contact-val">advaykumar2004@gmail.com</div>
               </div>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    
-    case 'awards':
-      return `
-        <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
-        ${slide.subheadline ? `<p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>` : ''}
-        <div class="awards-grid">
-          ${slide.awards.map((award, i) => `
-            <div class="award-card" data-animate="fade-up" style="transition-delay: ${0.1 * (i + 1)}s">
-              <div class="award-icon">${award.icon}</div>
-              <div class="award-content">
-                <div class="award-title">${award.title}</div>
-                <div class="award-year">${award.year}</div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    
-    case 'beforeAfter':
-      return `
-        <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
-        <div class="before-after-container">
-          <div class="before-after-card" data-animate="fade-left">
-            <h3>${slide.left.title}</h3>
-            <div class="skill-cloud">
-              ${slide.left.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
-            </div>
-          </div>
-          <div class="before-after-card" data-animate="fade-right">
-            <h3>${slide.right.title}</h3>
-            <div class="skill-cloud">
-              ${slide.right.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
-            </div>
-          </div>
-        </div>
-      `;
-    
-    case 'closing':
-      return `
-        <h2 class="headline" data-animate="fade-up">${slide.headline}</h2>
-        <p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>
-        <div class="contact-grid" data-animate="fade-up">
-          ${slide.contacts.map((contact, i) => `
-            <a href="${contact.link}" class="contact-item" target="${contact.link.startsWith('http') ? '_blank' : '_self'}" rel="${contact.link.startsWith('http') ? 'noopener noreferrer' : ''}">
-              <span class="contact-icon">${contact.icon}</span>
-              <span>${contact.text}</span>
             </a>
-          `).join('')}
+            <a class="contact-card" href="tel:+61410377289">
+              <div class="contact-icon-wrap">✆</div>
+              <div>
+                <div class="contact-type">Phone</div>
+                <div class="contact-val">(+61) 410 377 289</div>
+              </div>
+            </a>
+            <a class="contact-card" href="https://linkedin.com/in/advay-kumar" target="_blank" rel="noopener">
+              <div class="contact-icon-wrap">in</div>
+              <div>
+                <div class="contact-type">LinkedIn</div>
+                <div class="contact-val">Advay Kumar</div>
+              </div>
+            </a>
+            <a class="contact-card" href="https://github.com/AKoder123" target="_blank" rel="noopener">
+              <div class="contact-icon-wrap">⌥</div>
+              <div>
+                <div class="contact-type">GitHub</div>
+                <div class="contact-val">AKoder123</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="website-block" data-animate data-delay="5">
+            <div class="ws-dot"></div>
+            <div class="ws-url">
+              <a href="https://akoder123.github.io/Advay-Personal-Website/" target="_blank" rel="noopener">
+                akoder123.github.io/Advay-Personal-Website/
+              </a>
+            </div>
+          </div>
         </div>
-      `;
-    
-    default:
-      return `<p>Unknown slide type: ${slide.type}</p>`;
-  }
+
+        <div class="closing-right" data-animate data-delay="4">
+          <div class="avail-card">
+            <div class="avail-badge">
+              <div class="avail-dot"></div>
+              Available 2026
+            </div>
+            <div class="avail-heading">Open to graduate roles, research collaborations &amp; meaningful projects.</div>
+            <div class="avail-body">
+              Graduating Monash University in 2026 with a dual degree in Electrical &amp; Computer Systems Engineering and Commerce. Strong background in AI/ML, robotics, and enterprise technology with published research and industry experience at ANZ Bank.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
-// ============================================
-// NAVIGATION
-// ============================================
-function setupNavigation() {
-  document.addEventListener('keydown', handleKeyDown);
-  
-  // Touch/swipe support
-  let touchStartY = 0;
-  let touchEndY = 0;
-  
-  slideContainer.addEventListener('touchstart', (e) => {
-    touchStartY = e.changedTouches[0].screenY;
-  }, { passive: true });
-  
-  slideContainer.addEventListener('touchend', (e) => {
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-  }, { passive: true });
-  
-  function handleSwipe() {
-    const threshold = 50;
-    const diff = touchStartY - touchEndY;
-    
-    if (Math.abs(diff) > threshold) {
-      if (diff > 0) {
-        goToSlide(currentSlideIndex + 1);
-      } else {
-        goToSlide(currentSlideIndex - 1);
-      }
-    }
-  }
+/* ════════════════════════════════════════
+   ROUTE SLIDES
+════════════════════════════════════════ */
+function renderSlide(slide, i) {
+  if (slide.type === 'title')       return renderTitle(slide);
+  if (slide.type === 'closing')     return renderClosing(slide);
+  if (slide.type === 'beforeAfter') return renderProjects(slide);
+  if (slide.type === 'section')     return renderEducation(slide);
+  if (slide.headline.includes('ANZ'))        return renderANZ(slide);
+  if (slide.headline.includes('Robotics'))   return renderResearch(slide);
+  if (slide.headline.includes('DeepNeuron')) return renderDeepNeuron(slide);
+  if (slide.headline.includes('Awards'))     return renderAwards(slide);
+  if (slide.headline.includes('Skills'))     return renderSkills(slide);
+  return renderEducation(slide);
 }
 
-function handleKeyDown(e) {
-  if (isExporting) return;
-  
-  switch (e.key) {
-    case ' ':
-    case 'ArrowDown':
-    case 'ArrowRight':
-      e.preventDefault();
-      goToSlide(currentSlideIndex + 1);
-      break;
-    case 'ArrowUp':
-    case 'ArrowLeft':
-      e.preventDefault();
-      goToSlide(currentSlideIndex - 1);
-      break;
-    case 'Home':
-      e.preventDefault();
-      goToSlide(0);
-      break;
-    case 'End':
-      e.preventDefault();
-      goToSlide(slidesData.length - 1);
-      break;
-  }
+/* ════════════════════════════════════════
+   BUILD
+════════════════════════════════════════ */
+function buildDeck(data) {
+  slides = data.slides;
+  const deck = document.getElementById('deck');
+
+  deck.innerHTML = slides.map((slide, i) => `
+    <section class="slide slide-${slide.type}" id="slide-${i}" data-index="${i}">
+      ${renderSlide(slide, i)}
+    </section>
+  `).join('');
+
+  document.getElementById('slideCounter').textContent =
+    `01 / ${String(slides.length).padStart(2, '0')}`;
+
+  initObserver();
+  initKeyboard();
+  initNavbarOffset();
+  setupPdfExport();
+
+  // Trigger first slide
+  setTimeout(() => {
+    const first = document.getElementById('slide-0');
+    if (first) { first.classList.add('is-active'); triggerEffects(first); }
+  }, 120);
 }
 
-function goToSlide(index) {
-  const clampedIndex = Math.max(0, Math.min(index, slidesData.length - 1));
-  if (clampedIndex === currentSlideIndex) return;
-  
-  const targetSlide = document.getElementById(`slide-${clampedIndex}`);
-  if (targetSlide) {
-    targetSlide.scrollIntoView({ behavior: 'smooth' });
-  }
+/* ════════════════════════════════════════
+   PER-SLIDE JS EFFECTS
+════════════════════════════════════════ */
+function triggerEffects(el) {
+  // Stat counters
+  el.querySelectorAll('[data-count]').forEach(num => {
+    const target = parseFloat(num.dataset.count);
+    const dec = parseInt(num.dataset.decimals || '0', 10);
+    const dur = 1200;
+    const t0 = performance.now();
+    const tick = now => {
+      const p = Math.min((now - t0) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      num.textContent = (target * ease).toFixed(dec);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    setTimeout(() => requestAnimationFrame(tick), 450);
+  });
+
+  // GPA bar
+  el.querySelectorAll('.gpa-fill[data-width]').forEach(bar => {
+    setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 650);
+  });
+
+  // Stagger skill chips
+  el.querySelectorAll('.skill-chip').forEach((chip, i) => {
+    chip.style.cssText = 'opacity:0;transform:scale(0.85)';
+    setTimeout(() => {
+      chip.style.transition = 'opacity 0.3s, transform 0.3s';
+      chip.style.opacity = '1'; chip.style.transform = 'scale(1)';
+    }, 300 + i * 35);
+  });
+
+  // Stagger award cards (horizontal slide)
+  el.querySelectorAll('.award-card').forEach((card, i) => {
+    card.style.cssText = 'opacity:0;transform:translateX(-12px)';
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      card.style.opacity = '1'; card.style.transform = 'none';
+    }, 250 + i * 80);
+  });
+
+  // Stagger timeline items
+  el.querySelectorAll('.tl-item').forEach((item, i) => {
+    item.style.cssText = 'opacity:0;transform:translateY(8px)';
+    setTimeout(() => {
+      item.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+      item.style.opacity = '1'; item.style.transform = 'none';
+    }, 350 + i * 75);
+  });
+
+  // Role cards
+  el.querySelectorAll('.role-card').forEach((card, i) => {
+    card.style.cssText = 'opacity:0;transform:translateY(10px)';
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+      card.style.opacity = '1'; card.style.transform = 'none';
+    }, 320 + i * 65);
+  });
+
+  // Contact cards
+  el.querySelectorAll('.contact-card').forEach((card, i) => {
+    card.style.cssText = 'opacity:0;transform:translateY(8px)';
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      card.style.opacity = '1'; card.style.transform = 'none';
+    }, 380 + i * 70);
+  });
+
+  // Edu modules
+  el.querySelectorAll('.edu-module').forEach((mod, i) => {
+    mod.style.cssText = 'opacity:0;transform:translateY(10px)';
+    setTimeout(() => {
+      mod.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      mod.style.opacity = '1'; mod.style.transform = 'none';
+    }, 300 + i * 90);
+  });
+
+  // DeepNeuron timeline
+  el.querySelectorAll('.dn-tl-item').forEach((item, i) => {
+    item.style.cssText = 'opacity:0;transform:translateX(-8px)';
+    setTimeout(() => {
+      item.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+      item.style.opacity = '1'; item.style.transform = 'none';
+    }, 350 + i * 80);
+  });
+
+  // Project cards
+  el.querySelectorAll('.project-card').forEach((card, i) => {
+    card.style.cssText = 'opacity:0;transform:translateY(14px)';
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+      card.style.opacity = '1'; card.style.transform = 'none';
+    }, 280 + i * 90);
+  });
 }
 
-// ============================================
-// INTERSECTION OBSERVER (ACTIVE SLIDE DETECTION)
-// ============================================
-function setupIntersectionObserver() {
-  const options = {
-    root: slideContainer,
-    threshold: 0.5
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const index = parseInt(entry.target.dataset.index);
-        setActiveSlide(index);
+/* ════════════════════════════════════════
+   INTERSECTION OBSERVER
+════════════════════════════════════════ */
+function initObserver() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        if (!e.target.classList.contains('is-active')) {
+          e.target.classList.add('is-active');
+          triggerEffects(e.target);
+        }
+        const idx = parseInt(e.target.dataset.index, 10);
+        current = idx;
+        document.getElementById('slideCounter').textContent =
+          `${String(idx + 1).padStart(2,'0')} / ${String(slides.length).padStart(2,'0')}`;
+        const pct = (idx / Math.max(slides.length - 1, 1)) * 100;
+        document.getElementById('progressBar').style.width = pct + '%';
       }
     });
-  }, options);
-  
-  document.querySelectorAll('.slide').forEach(slide => {
-    observer.observe(slide);
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.slide').forEach(s => obs.observe(s));
+}
+
+/* ════════════════════════════════════════
+   KEYBOARD
+════════════════════════════════════════ */
+function initKeyboard() {
+  document.addEventListener('keydown', e => {
+    const fwd = ['ArrowDown','ArrowRight','Space','PageDown'].includes(e.code);
+    const bwd = ['ArrowUp','ArrowLeft','PageUp'].includes(e.code);
+    if (fwd || bwd) {
+      e.preventDefault();
+      const next = fwd ? current + 1 : current - 1;
+      if (next >= 0 && next < slides.length)
+        document.getElementById(`slide-${next}`)?.scrollIntoView({ behavior: 'smooth' });
+    }
   });
 }
 
-function setActiveSlide(index) {
-  // Remove active class from all slides
-  document.querySelectorAll('.slide').forEach(slide => {
-    slide.classList.remove('is-active');
-  });
-  
-  // Add active class to current slide
-  const currentSlide = document.getElementById(`slide-${index}`);
-  if (currentSlide) {
-    currentSlide.classList.add('is-active');
-  }
-  
-  currentSlideIndex = index;
-  updateProgress();
+/* ════════════════════════════════════════
+   NAVBAR OFFSET
+════════════════════════════════════════ */
+function initNavbarOffset() {
+  const nav = document.getElementById('navbar');
+  const set = () => document.documentElement.style.setProperty('--topOffset', nav.offsetHeight + 'px');
+  set();
+  new ResizeObserver(set).observe(nav);
 }
 
-function updateProgress() {
-  const progress = ((currentSlideIndex + 1) / slidesData.length) * 100;
-  progressFill.style.width = `${progress}%`;
-  currentSlideEl.textContent = currentSlideIndex + 1;
-}
-
-// ============================================
-// PDF EXPORT
-// ============================================
+/* ════════════════════════════════════════
+   PDF EXPORT
+════════════════════════════════════════ */
 function setupPdfExport() {
-  exportBtn.addEventListener('click', exportToPDF);
-}
-
-async function exportToPDF() {
-  if (isExporting) return;
-  isExporting = true;
-  
-  const originalText = exportBtn.textContent;
-  exportBtn.textContent = 'Exporting...';
-  exportBtn.disabled = true;
-  
-  try {
-    // Load libraries
-    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
-    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
-    
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF({
-      orientation: 'landscape',
-      unit: 'px',
-      format: [1920, 1080]
-    });
-    
-    // Add exporting class
-    document.body.classList.add('exportingPdf');
-    
-    // Force all slides to visible state
-    document.querySelectorAll('.slide').forEach(slide => {
-      slide.classList.add('is-active');
-    });
-    
-    // Capture each slide
-    for (let i = 0; i < slidesData.length; i++) {
-      await captureSlideToPDF(i, pdf, i === slidesData.length - 1);
+  const btn = document.getElementById('exportPdfBtn');
+  btn.addEventListener('click', async () => {
+    btn.disabled = true; btn.textContent = 'Exporting…';
+    try {
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+    } catch {
+      alert('PDF export libraries could not load. Ensure cdnjs.cloudflare.com is reachable.');
+      btn.disabled = false; btn.textContent = 'Export PDF'; return;
     }
-    
-    // Save PDF
-    pdf.save('Advay_Kumar_Portfolio.pdf');
-    
-  } catch (error) {
-    console.error('PDF export failed:', error);
-    alert('PDF export failed. Please ensure you have an internet connection to load the required libraries (cdnjs.cloudflare.com).');
-  } finally {
-    // Cleanup
-    document.body.classList.remove('exportingPdf');
-    document.querySelectorAll('.slide').forEach((slide, index) => {
-      slide.classList.toggle('is-active', index === currentSlideIndex);
-    });
-    
-    exportBtn.textContent = originalText;
-    exportBtn.disabled = false;
-    isExporting = false;
-  }
-}
 
-async function captureSlideToPDF(index, pdf, isLast) {
-  const slide = document.getElementById(`slide-${index}`);
-  
-  // Create PDF stage content
-  pdfStage.innerHTML = '';
-  
-  // Clone background
-  const bgClone = document.querySelector('.bg').cloneNode(true);
-  pdfStage.appendChild(bgClone);
-  
-  // Clone slide
-  const slideClone = slide.cloneNode(true);
-  slideClone.classList.add('is-active');
-  slideClone.style.position = 'absolute';
-  slideClone.style.top = '0';
-  slideClone.style.left = '0';
-  pdfStage.appendChild(slideClone);
-  
-  // Wait for render
-  await new Promise(resolve => setTimeout(resolve, 100));
-  
-  // Capture with html2canvas
-  const canvas = await html2canvas(pdfStage, {
-    backgroundColor: '#050611',
-    scale: Math.max(window.devicePixelRatio, 2),
-    useCORS: true,
-    allowTaint: true,
-    logging: false
+    document.body.classList.add('exportingPdf');
+    document.querySelectorAll('.slide').forEach(s => s.classList.add('is-active'));
+    document.querySelectorAll('[data-animate]').forEach(el => {
+      el.style.opacity = '1'; el.style.transform = 'none';
+    });
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1920, 1080] });
+
+    for (let i = 0; i < slides.length; i++) {
+      const stage = document.createElement('div'); stage.id = 'pdfStage';
+      const clone = document.getElementById(`slide-${i}`).cloneNode(true);
+      clone.classList.add('is-active');
+      clone.querySelectorAll('[data-animate],[style]').forEach(el => {
+        el.style.opacity = '1'; el.style.transform = 'none'; el.style.transition = 'none';
+      });
+      stage.appendChild(clone);
+      document.body.appendChild(stage);
+
+      const canvas = await html2canvas(stage, {
+        scale: 2, useCORS: true,
+        width: 1920, height: 1080, windowWidth: 1920, windowHeight: 1080,
+      });
+      if (i > 0) pdf.addPage([1920, 1080], 'landscape');
+      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 1920, 1080);
+      document.body.removeChild(stage);
+    }
+
+    pdf.save('advay-kumar-portfolio.pdf');
+    document.body.classList.remove('exportingPdf');
+    btn.disabled = false; btn.textContent = 'Export PDF';
   });
-  
-  // Add to PDF
-  const imgData = canvas.toDataURL('image/png');
-  
-  if (index > 0) {
-    pdf.addPage([1920, 1080], 'landscape');
-  }
-  
-  pdf.addImage(imgData, 'PNG', 0, 0, 1920, 1080);
-  
-  // Cleanup stage
-  pdfStage.innerHTML = '';
 }
 
 function loadScript(src) {
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(`script[src="${src}"]`)) {
-      resolve();
-      return;
-    }
-    
-    const script = document.createElement('script');
-    script.src = src;
-    script.onload = resolve;
-    script.onerror = () => reject(new Error(`Failed to load ${src}`));
-    document.head.appendChild(script);
+  return new Promise((res, rej) => {
+    if (document.querySelector(`script[src="${src}"]`)) return res();
+    const s = document.createElement('script');
+    s.src = src; s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
   });
 }
 
-// ============================================
-// NAVBAR HEIGHT CALCULATION
-// ============================================
-function updateTopOffset() {
-  const nav = document.querySelector('.top-nav');
-  if (nav) {
-    const height = nav.offsetHeight;
-    document.documentElement.style.setProperty('--topOffset', `${height}px`);
+/* ════════════════════════════════════════
+   BOOT
+════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const data = await fetch('./content.json').then(r => r.json());
+    buildDeck(data);
+  } catch (e) {
+    document.body.innerHTML = `<div style="padding:40px;font-family:monospace;color:red">Error loading content.json: ${e.message}</div>`;
   }
-}
-
-window.addEventListener('resize', updateTopOffset);
-updateTopOffset();
+});

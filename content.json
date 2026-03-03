@@ -1,191 +1,118 @@
 {
   "meta": {
     "deckId": "advay-kumar-portfolio",
-    "title": "Advay Kumar - Portfolio",
-    "theme": "dark-tech"
+    "title": "Advay Kumar",
+    "theme": "dark-engineering"
   },
   "slides": [
     {
       "type": "title",
       "headline": "Advay Kumar",
-      "subheadline": "Electrical & Computer Systems Engineer | AI & Robotics Researcher",
-      "note": "Australian Citizen • Monash University • Graduating 2026"
+      "subheadline": "Electrical & Computer Systems Engineer · AI/ML · Builder",
+      "note": "Monash University | GPA 3.906 | Dean's Honours 2022–2024"
     },
     {
-      "type": "content",
+      "type": "section",
       "headline": "Education",
-      "subheadline": "Monash University, Melbourne",
-      "stats": [
-        { "value": "3.91", "label": "GPA / 4.00" },
-        { "value": "85.98", "label": "WAM" },
-        { "value": "3x", "label": "Dean's Honours List" },
-        { "value": "2026", "label": "Graduation Year" }
-      ],
-      "skillTags": [
-        "Computer Organization & Programming",
-        "Machine Learning",
-        "Artificial Intelligence",
-        "Data Structures & Algorithms",
-        "Strategic Management",
-        "Supply Chain Fundamentals"
-      ]
-    },
-    {
-      "type": "experience",
-      "headline": "Professional Experience",
-      "subheadline": "Enterprise & Research Roles",
-      "experiences": [
-        {
-          "title": "Enterprise Architecture Technology Intern",
-          "company": "ANZ Bank — AI Automation",
-          "date": "Nov 2025 – Feb 2026",
-          "description": "Developed AI-assisted reporting solutions using Copilot and advanced prompt engineering. Automated BAU processes saving ~4 hours per week. Built enterprise Confluence/SharePoint solutions.",
-          "tags": ["AI Automation", "Copilot", "HTML/CSS/JS", "Governance"]
-        },
-        {
-          "title": "Research Assistant",
-          "company": "Monash Robotics",
-          "date": "Feb 2024 – Oct 2025",
-          "description": "Published Amazon-funded VR/MR warehouse error correction research. Full paper at HRI 2025 ACM conference. Built VR/MR robot arm control system using ROS & Unity.",
-          "tags": ["VR/MR", "ROS", "Unity", "Research Publication"]
-        },
-        {
-          "title": "Research Intern",
-          "company": "Monash Robotics",
-          "date": "Nov 2023 – Feb 2024",
-          "description": "Controlled Franka Panda robot using MoveIt & ROS. Developed Meta Quest 3 VR interface in C# / Unity. Created research proposal & thesis presentation.",
-          "tags": ["Robotics", "C#", "Unity", "MoveIt"]
-        }
-      ]
-    },
-    {
-      "type": "projects",
-      "headline": "Featured Projects",
-      "subheadline": "AI & Machine Learning Applications",
-      "projects": [
-        {
-          "icon": "🔬",
-          "title": "Microfluidics Analysis",
-          "description": "ResNet-34 model for sperm cell selection aiding IVF treatment",
-          "stats": [
-            { "icon": "✓", "value": "90% Accuracy" },
-            { "icon": "🏥", "value": "Monash IVF 2026" }
-          ]
-        },
-        {
-          "icon": "🐦",
-          "title": "Bio-Acoustics Monitoring",
-          "description": "LSTM neural network for endangered bird species classification",
-          "stats": [
-            { "icon": "✓", "value": "80% Accuracy" },
-            { "icon": "⚡", "value": "12hr → 30min" }
-          ]
-        },
-        {
-          "icon": "🤖",
-          "title": "VR Robot Control System",
-          "description": "Mixed Reality interface for remote warehouse error correction",
-          "stats": [
-            { "icon": "📄", "value": "HRI 2025" },
-            { "icon": "🔧", "value": "ROS + Unity" }
-          ]
-        }
+      "subheadline": "Monash University — B.E. Electrical & Computer Systems + B.Com · Graduating 2026",
+      "bullets": [
+        "GPA 3.906 / 4.00 · WAM 85.981",
+        "Dean's Honours List: 2022, 2023 & 2024",
+        "Core: ML, AI, Data Structures, Circuits, Power & Energy, Networks",
+        "Commerce: Organisational Behaviour, Strategic Management, Supply Chain"
       ]
     },
     {
       "type": "content",
-      "headline": "Leadership & Impact",
-      "subheadline": "Monash DeepNeuron & Parliamentary Engagement",
-      "timeline": [
-        {
-          "title": "AI/Deep Learning Lead",
-          "subtitle": "Monash DeepNeuron | June 2023 – July 2024",
-          "desc": "Led AI/ML projects, supervised technical teams, recruited & mentored members, collaborated with professors & corporate partners."
-        },
-        {
-          "title": "Parliamentary Inquiry Host",
-          "subtitle": "Australian Federal Government | Nov 2023",
-          "desc": "Hosted House Standing Committee site visit for Generative AI in Education inquiry. Demonstrated classroom GenAI use cases."
-        }
+      "headline": "ANZ Bank — AI Automation Intern",
+      "subheadline": "Enterprise Architecture · Nov 2025 – Feb 2026",
+      "bullets": [
+        "Built AI-assisted reporting with Copilot & advanced prompt engineering",
+        "Automated BAU processes → saved ~4 hrs/week of manual effort",
+        "Delivered executive-facing Confluence & SharePoint artifacts (HTML/CSS/JS)",
+        "Enhanced governance templates with risk & total cost of ownership analysis",
+        "Presented changes at Architecture Working Group forums"
+      ]
+    },
+    {
+      "type": "content",
+      "headline": "Monash Robotics — Research Assistant",
+      "subheadline": "Amazon-Funded Study · Feb 2024 – Oct 2025",
+      "bullets": [
+        "Published full paper at HRI 2025 (ACM) — top-tier Human-Robot Interaction venue",
+        "Explored VR & Mixed Reality for remote warehouse error correction",
+        "Built ROS + Unity robot arm control system for Meta Quest 3",
+        "Designed & executed formal user study evaluating VR vs MR effectiveness",
+        "Used ROS TCP Endpoint to bridge headset ↔ Unity ↔ robot"
+      ]
+    },
+    {
+      "type": "content",
+      "headline": "AI/DL Lead — Monash DeepNeuron",
+      "subheadline": "Student AI & HPC Engineering Team · June 2023 – July 2024",
+      "bullets": [
+        "Led AI, ML & Deep Learning projects across the team",
+        "Recruited, trained & mentored AI/DL members",
+        "Liaised with professors, industry & project supervisors",
+        "Evaluated and sourced new projects for the team pipeline"
       ]
     },
     {
       "type": "beforeAfter",
-      "headline": "Technical Skills",
+      "headline": "Research That Ships",
       "left": {
-        "title": "Programming Languages",
-        "items": [
-          "Python",
-          "C++",
-          "C",
-          "C#",
-          "HTML/CSS",
-          "SQL",
-          "MATLAB",
-          "Flutter/Dart",
-          "R",
-          "ROS",
-          "Assembly (RISC-V)",
-          "Verilog",
-          "VHDL"
+        "title": "Microfluidics — Sperm Analysis",
+        "bullets": [
+          "Optimised ResNet-34 model for sperm cell selection",
+          "90% classification accuracy achieved",
+          "Potential adoption by Monash IVF from 2026",
+          "Direct real-world medical impact"
         ]
       },
       "right": {
-        "title": "Tools & Platforms",
-        "items": [
-          "Unity",
-          "Meta Quest Dev Hub",
-          "Android Studio",
-          "PyCharm",
-          "Jupyter",
-          "Git",
-          "VS Code",
-          "MongoDB",
-          "MoveIt",
-          "LTspice",
-          "CST Solver",
-          "Jira",
-          "PowerWorld"
+        "title": "Bio-Acoustics — Species Monitoring",
+        "bullets": [
+          "Multi-head 2-way LSTM for audio classification",
+          "80% accuracy on endangered bird species",
+          "Reduced analysis time: 12 hrs → 30 mins",
+          "Supporting ecosystem researchers worldwide"
         ]
       }
     },
     {
-      "type": "awards",
+      "type": "content",
       "headline": "Awards & Recognition",
-      "subheadline": "Industry Recognition & Scholarships",
-      "awards": [
-        {
-          "icon": "🏆",
-          "title": "AIIA Innovation Awards — State Finalist",
-          "year": "2022"
-        },
-        {
-          "icon": "🎖️",
-          "title": "ADF Future Innovators Award",
-          "year": "2021"
-        },
-        {
-          "icon": "💰",
-          "title": "Motorola Solutions Leader Scholarship",
-          "year": "2023"
-        },
-        {
-          "icon": "🎓",
-          "title": "Achieving Potential Access Scholarship",
-          "year": "2022"
-        }
+      "subheadline": "Competing & winning at a national level",
+      "bullets": [
+        "State Finalist — AIIA Innovation Awards 2022 (Computer Vision / Mask Detection)",
+        "Australian Defence Force 2021 Future Innovators Award",
+        "Motorola Solutions Leader Scholarship 2023",
+        "Achieving and Achieving Potential Access Scholarship 2022",
+        "Parliamentary AI Inquiry presenter — House Standing Committee on Education 2023"
+      ]
+    },
+    {
+      "type": "content",
+      "headline": "Technical Skills",
+      "subheadline": "Full-stack engineering across hardware, software & AI",
+      "bullets": [
+        "Languages: Python, C++, C, C#, HTML/CSS, SQL, MATLAB, Verilog, VHDL, R",
+        "Frameworks: ROS, Flutter/Dart, Unity, MoveIt, Assembly (RISC-V)",
+        "Tools: Git, PyCharm, Jupyter, VSCode, MongoDB, Android Studio, LTspice",
+        "Management: Jira, Gantt, Kanban, Confluence, SharePoint"
       ]
     },
     {
       "type": "closing",
-      "headline": "Let's Connect",
-      "subheadline": "Open to opportunities in AI, Robotics & Engineering",
-      "contacts": [
-        { "icon": "✉", "text": "advaykumar2004@gmail.com", "link": "mailto:advaykumar2004@gmail.com" },
-        { "icon": "☎", "text": "(+61) 410 377 289", "link": "tel:+61410377289" },
-        { "icon": "in", "text": "LinkedIn", "link": "https://www.linkedin.com/in/advay-kumar-2a9ab6247/" },
-        { "icon": "gh", "text": "GitHub", "link": "https://github.com/AKoder123" }
-      ]
+      "headline": "Let's Build Something",
+      "subheadline": "Open to graduate roles, research collaborations & meaningful projects",
+      "bullets": [
+        "advaykumar2004@gmail.com",
+        "(+61) 410 377 289",
+        "LinkedIn: Advay Kumar",
+        "GitHub: AKoder123"
+      ],
+      "note": "https://akoder123.github.io/Advay-Personal-Website/"
     }
   ]
 }

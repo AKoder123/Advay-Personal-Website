@@ -3,48 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advay Kumar - Portfolio</title>
+  <title>Advay Kumar</title>
+  <meta name="description" content="Advay Kumar — Electrical & Computer Systems Engineer, AI/ML, Monash University." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Background -->
-  <div class="bg">
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
-    <div class="grid-overlay"></div>
-  </div>
 
-  <!-- Navigation -->
-  <nav class="top-nav">
-    <div class="nav-brand">AK</div>
-    <div class="nav-actions">
-      <button id="exportPdfBtn" type="button">Export PDF</button>
+  <!-- Progress bar -->
+  <div id="progressBar" style="width:0%"></div>
+
+  <!-- Navbar -->
+  <nav id="navbar" role="navigation" aria-label="Slide navigation">
+    <div class="logo">
+      <div class="logo-mark">AK</div>
+      <span class="logo-name">Advay Kumar</span>
+    </div>
+    <div class="nav-right">
+      <span id="slideCounter">01 / 09</span>
+      <button id="exportPdfBtn" type="button" aria-label="Export slides as PDF">Export PDF</button>
     </div>
   </nav>
 
-  <!-- Progress Indicator -->
-  <div class="progress-bar">
-    <div class="progress-fill"></div>
-  </div>
-
-  <!-- Slide Counter -->
-  <div class="slide-counter">
-    <span class="current">1</span> / <span class="total">13</span>
-  </div>
-
-  <!-- Main Container -->
-  <main class="slide-container" id="slideContainer">
-    <!-- Slides will be injected here by app.js -->
-  </main>
-
-  <!-- Navigation Hints -->
-  <div class="nav-hints">
-    <span class="hint-key">SPACE</span> or <span class="hint-key">ARROWS</span> to navigate
-  </div>
-
-  <!-- PDF Export Stage (off-screen) -->
-  <div id="pdfStage"></div>
+  <!-- Slide deck -->
+  <main id="deck" role="main" aria-label="Portfolio slides"></main>
 
   <script src="app.js"></script>
 </body>
