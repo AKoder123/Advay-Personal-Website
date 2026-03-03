@@ -91,7 +91,7 @@ function getSlideContent(slide) {
     case 'title':
       return `
         <div class="profile-image-container" data-animate="scale">
-          <img src="profile.png" alt="Profile" class="profile-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'profile-placeholder\\'>AK</div>';">
+          <img src="profile.jpg" alt="Profile" class="profile-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'profile-placeholder\\'>AK</div>';">
         </div>
         <h1 class="headline" data-animate="fade-up">${slide.headline}</h1>
         <p class="subheadline" data-animate="fade-up">${slide.subheadline}</p>
