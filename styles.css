@@ -877,7 +877,29 @@ h2.headline {
   box-shadow: 0 2px 12px rgba(26,68,128,0.07);
   transform: translateX(4px);
 }
-.award-emoji { font-size: 1.4rem; flex-shrink: 0; line-height: 1.2; }
+/* SVG outline icons — awards slide */
+.award-icon-svg {
+  flex-shrink: 0;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.award-icon-svg svg { display: block; }
+
+/* Large icon inside parl-callout */
+.parl-icon.award-icon-svg {
+  width: 40px; height: 40px;
+  margin-bottom: 16px;
+  color: rgba(255,255,255,0.85);
+}
+.parl-icon.award-icon-svg svg { width: 40px; height: 40px; }
+
+/* Small icons in award list cards */
+.award-icon-sm {
+  width: 36px; height: 36px;
+}
+.award-icon-sm svg { width: 36px; height: 36px; }
 .award-title { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
 .award-sub { font-size: 0.8rem; color: var(--slate-400); line-height: 1.4; }
 
@@ -888,7 +910,7 @@ h2.headline {
   padding: 28px;
   color: #fff;
 }
-.parl-icon { font-size: 2rem; margin-bottom: 12px; }
+.parl-icon { margin-bottom: 0; }  /* sizing handled by .award-icon-svg */
 .parl-title {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 1.3rem;

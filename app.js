@@ -419,13 +419,32 @@ function renderProjects(slide) {
 }
 
 function renderAwards(slide) {
+  // Solid-filled SVG icons — professional silhouettes using currentColor
+  const iconParl = `<svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2.5L2 8.5V10h1v11h2V11h2v10h2V11h2v10h2V11h2v10h2V11h2v10h2V10h1V8.5L12 2.5zM11 7a1 1 0 1 1 2 0 1 1 0 0 1-2 0z"/>
+    <rect x="2" y="20" width="20" height="2" rx="0.5"/>
+  </svg>`;
+  const iconTrophy = `<svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17 3H7v8a5 5 0 0 0 10 0V3zM5 5H3a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4V9A2 2 0 0 1 5 7V5zm14 0h2a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4V9a2 2 0 0 0 2-2V5zM11 18v-2h2v2l1 2H10l1-2z"/>
+    <rect x="8" y="20" width="8" height="2" rx="1"/>
+  </svg>`;
+  const iconShield = `<svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 1L3 5v6c0 5.25 3.75 10.15 9 11.35C17.25 21.15 21 16.25 21 11V5l-9-4zm-1.5 13.5l-3-3 1.41-1.41L10.5 11.67l4.59-4.58L16.5 8.5l-6 6z"/>
+  </svg>`;
+  const iconCap = `<svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18V17l7 4 7-4v-3.82L12 17l-7-3.82z"/>
+  </svg>`;
+  const iconScroll = `<svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+  </svg>`;
+
   return `
     <div class="slide-inner">
       <div class="eyebrow" data-animate data-delay="1">Awards &amp; Recognition</div>
       <div class="awards-layout">
         <div class="awards-left" data-animate data-delay="2">
           <div class="parl-callout">
-            <div class="parl-icon">🏛️</div>
+            <div class="parl-icon award-icon-svg">${iconParl}</div>
             <div class="parl-title">Parliamentary AI Presenter</div>
             <div class="parl-body">
               Hosted and presented during a site visit by the House Standing Committee on Education, Employment and Training for the Parliamentary Inquiry into Generative AI in Education. November 2023.
@@ -435,28 +454,28 @@ function renderAwards(slide) {
 
         <div class="awards-list" data-animate data-delay="3">
           <div class="award-card">
-            <div class="award-emoji">🏆</div>
+            <div class="award-icon-svg award-icon-sm">${iconTrophy}</div>
             <div>
               <div class="award-title">State Finalist — AIIA Innovation Awards</div>
               <div class="award-sub">2022 · Computer Vision / Mask Detection System</div>
             </div>
           </div>
           <div class="award-card">
-            <div class="award-emoji">🛡️</div>
+            <div class="award-icon-svg award-icon-sm">${iconShield}</div>
             <div>
               <div class="award-title">ADF Future Innovators Award</div>
               <div class="award-sub">Australian Defence Force 2021 · Face Mask Detection System</div>
             </div>
           </div>
           <div class="award-card">
-            <div class="award-emoji">🎓</div>
+            <div class="award-icon-svg award-icon-sm">${iconCap}</div>
             <div>
               <div class="award-title">Motorola Solutions Leader Scholarship</div>
               <div class="award-sub">2023 · Awarded for academic leadership and achievement</div>
             </div>
           </div>
           <div class="award-card">
-            <div class="award-emoji">📜</div>
+            <div class="award-icon-svg award-icon-sm">${iconScroll}</div>
             <div>
               <div class="award-title">Achieving &amp; Achieving Potential Access Scholarship</div>
               <div class="award-sub">2022 · Monash University</div>
@@ -533,7 +552,7 @@ function renderClosing(slide) {
                 <div class="contact-val">(+61) 410 377 289</div>
               </div>
             </a>
-            <a class="contact-card" href="https://www.linkedin.com/in/advay-kumar-2a9ab6247/" target="_blank" rel="noopener">
+            <a class="contact-card" href="https://linkedin.com/in/advay-kumar" target="_blank" rel="noopener">
               <div class="contact-icon-wrap">in</div>
               <div>
                 <div class="contact-type">LinkedIn</div>
