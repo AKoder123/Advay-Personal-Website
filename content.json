@@ -8,26 +8,26 @@
     {
       "type": "title",
       "headline": "Advay Kumar",
-      "subheadline": "Electrical & Computer Systems Engineering • AI Automation • Robotics/XR Research",
+      "subheadline": "Electrical & Computer Systems Engineering \u2022 AI Automation \u2022 Robotics/XR Research",
       "bullets": [
-        "Monash University — B.E. (ECSE) + B.Com (Grad 2026)",
-        "GPA 3.906/4.00 • WAM 85.981",
-        "Dean’s Honours List: 2022–2024",
+        "Monash University \u2014 B.E. (ECSE) + B.Com (Grad 2026)",
+        "GPA 3.906/4.00 \u2022 WAM 85.981",
+        "Dean\u2019s Honours List: 2022\u20132024",
         "Melbourne, Australia"
       ],
-      "note": "Use Space / ← → to navigate"
+      "note": "Use Space / \u2190 \u2192 to navigate"
     },
     {
       "type": "content",
       "headline": "Education",
-      "subheadline": "Monash University — Graduation 2026",
+      "subheadline": "Monash University \u2014 Graduation 2026",
       "bullets": [
-        "B.E. Electrical & Computer Systems Engineering",
-        "B.Com (Commerce)",
-        "GPA 3.906/4.00 • WAM 85.981",
-        "Dean’s Honours List (2022, 2023, 2024)",
-        "Strengths: AI, systems, statistics, networks",
-        "Coursework: ML, AI, DSA, circuits, power"
+        "Monash University \u2014 B.E. Electrical & Computer Systems Engineering + B.Com (Management)",
+        "Expected graduation: 2026 \u2022 Australian Citizen",
+        "GPA: 3.906/4.00 \u2022 WAM: 85.981 \u2022 Dean\u2019s Honours List: 2022\u20132024",
+        "Key strengths: Computer Organisation & Programming \u2022 ML/AI \u2022 Data Structures & Algorithms",
+        "Statistics & Applications \u2022 Circuits \u2022 Power & Energy \u2022 Networking",
+        "Always building: research, automation, and products that ship"
       ]
     },
     {
@@ -35,11 +35,11 @@
       "headline": "What I build",
       "subheadline": "From prototypes to enterprise-ready delivery",
       "bullets": [
-        "AI-assisted reporting + governance analytics",
-        "XR teleoperation systems for robot correction",
-        "Executive documentation (HTML/CSS/JS macros)",
-        "Research pipelines: study → analysis → publication",
-        "End-to-end engineering: hardware to software"
+        "Human-in-the-loop XR + robotics interfaces (Unity + ROS) for error correction & teleoperation",
+        "AI automation for governance/reporting: prompt engineering + validation against ground truth",
+        "Web tooling & internal documentation that\u2019s executive-ready (Confluence/SharePoint, HTML/CSS/JS)",
+        "Data + experimentation: study design, mixed models, metrics, and clear storytelling",
+        "End-to-end delivery: prototype \u2192 user testing \u2192 iteration \u2192 final artifact"
       ]
     },
     {
@@ -50,49 +50,52 @@
     {
       "type": "content",
       "headline": "ANZ Bank",
-      "subheadline": "Enterprise Architecture Technology Intern (AI Automation) • Nov 2025 – Feb 2026",
+      "subheadline": "Enterprise Architecture Technology Intern (AI Automation) \u2022 Nov 2025 \u2013 Feb 2026",
       "bullets": [
-        "Built Copilot-assisted reporting for governance data",
-        "Validated outputs vs historical manual reports",
-        "Automated BAU processes (~4 hrs/week saved)",
-        "Shipped exec-facing Confluence/SharePoint artifacts",
-        "Enhanced templates: risk + total cost of ownership",
-        "Socialised changes at Architecture Working Group"
+        "Built AI-assisted reporting using Copilot + prompt engineering to produce consistent governance analytics",
+        "Validated AI outputs against historical manual reporting to ensure reliability",
+        "Automated BAU processes \u2192 reduced manual effort by ~4 hours/week",
+        "Created enterprise-facing Confluence + SharePoint artifacts (HTML/CSS/JS macros) for exec visibility",
+        "Enhanced architecture governance templates (risk + TCO) and socialised changes at working groups",
+        "Mapped business capabilities and how tech enables delivery across the bank"
       ]
     },
     {
       "type": "content",
       "headline": "Monash Robotics",
-      "subheadline": "Research Assistant • Feb 2024 – Oct 2025",
+      "subheadline": "Research Assistant \u2022 Feb 2024 \u2013 Oct 2025",
       "bullets": [
-        "Amazon-funded study on VR/MR for warehouses",
-        "Published full paper at HRI 2025 (ACM)",
-        "Built VR/MR robot-arm correction system (Unity + ROS)",
-        "Designed and ran a multi-condition user study",
-        "Messaging via ROS TCP Endpoint + Connector"
+        "Amazon-funded research on VR/MR for remote warehouse error correction & amnesty issues",
+        "Published full paper at ACM HRI 2025",
+        "Built VR/MR robot-arm error-correction system (Unity + ROS)",
+        "Designed and ran a multi-condition user study to evaluate VR vs MR effectiveness",
+        "Integrated messaging via ROS TCP Endpoint + Connector between headset and Unity",
+        "Produced research artifacts: protocol, analysis, and publication-ready reporting"
       ],
-      "note": "Paper: dl.acm.org/doi/10.5555/3721488.3721553"
+      "note": "Read the HRI 2025 paper: https://dl.acm.org/doi/10.5555/3721488.3721553"
     },
     {
       "type": "content",
       "headline": "Research Intern",
-      "subheadline": "Franka Panda + Meta Quest 3 • Nov 2023 – Feb 2024",
+      "subheadline": "Franka Panda + Meta Quest 3 \u2022 Nov 2023 \u2013 Feb 2024",
       "bullets": [
-        "Controlled Franka Panda with MoveIt + ROS",
-        "Built Quest 3 VR interface in Unity (C#)",
-        "Integrated VR interactions with ROS nodes",
-        "Drafted proposal + thesis + poster in Overleaf"
+        "Controlled Franka Panda using MoveIt + ROS for precise manipulation",
+        "Built a Meta Quest 3 VR interface in Unity (C#) to interact with ROS nodes",
+        "Drafted research proposal in Overleaf; delivered thesis + poster presentation",
+        "Focused on intuitive control, latency, and safety constraints in teleoperation",
+        "Hands-on robotics software integration and experimentation"
       ]
     },
     {
       "type": "content",
       "headline": "Teaching & Customer Experience",
-      "subheadline": "VCE Tutor • Officeworks (Work Experience)",
+      "subheadline": "VCE Tutor \u2022 Officeworks (Work Experience)",
       "bullets": [
-        "Tutored VCE Methods + Software Development",
-        "Built study plans and targeted feedback loops",
-        "Customer support in-store + print/copy assistance",
-        "Used PDT scanners during stocktake and pricing"
+        "VCE Tutor \u2014 Methods + Software Development: personalised study plans and feedback loops",
+        "Mapped student strengths/gaps and coached for exam performance",
+        "Officeworks Customer Service Assistant: fast-paced problem solving and communication",
+        "Comfortable translating technical detail to non-technical stakeholders",
+        "High ownership: I make sure outcomes land, not just ideas"
       ]
     },
     {
@@ -103,34 +106,35 @@
     {
       "type": "content",
       "headline": "Parliamentary Inquiry",
-      "subheadline": "Generative AI in Education • Nov 2023",
+      "subheadline": "Generative AI in Education \u2022 Nov 2023",
       "bullets": [
-        "Hosted House Standing Committee site visit",
-        "Demoed classroom GenAI prototype + safeguards",
-        "Translated capability → benefits, limits, risks",
-        "Contributed to committee Q&A",
-        "Helped inform inquiry focus and direction"
+        "Hosted the House Standing Committee on Education, Employment & Training site visit at Monash DeepNeuron",
+        "Presented ongoing AI projects and demonstrated a classroom GenAI prototype use case",
+        "Helped sharpen committee understanding of benefits, informing the inquiry direction",
+        "Communicated risks, ethics considerations, and practical implementation constraints",
+        "Worked with Law & Ethics team for strong, evidence-backed engagement"
       ]
     },
     {
       "type": "content",
       "headline": "Microfluidics Analysis",
-      "subheadline": "ResNet34 sperm-cell selection • Jan – Jun 2023",
+      "subheadline": "ResNet34 sperm-cell selection \u2022 Jan \u2013 Jun 2023",
       "bullets": [
-        "Optimised and maintained a ResNet34 model",
-        "Achieved 90% accuracy on cell classification",
-        "Work may support Monash IVF from 2026"
+        "Analysed microfluidic images to quantify bubble/flow features for experimentation",
+        "Built repeatable data pipeline + visualisation for rapid iteration",
+        "Emphasis on accuracy, reproducibility, and clear reporting",
+        "Bridged engineering analysis with stakeholder-friendly summaries"
       ]
     },
     {
       "type": "content",
       "headline": "Bio-acoustics Monitoring",
-      "subheadline": "LSTM audio classification • Jun – Nov 2022",
+      "subheadline": "LSTM audio classification \u2022 Jun \u2013 Nov 2022",
       "bullets": [
-        "Built multi-head 2-way LSTM model",
-        "Achieved 80% accuracy for bird species",
-        "Cut analysis time: 12 hours → 30 minutes",
-        "Supports endangered-species monitoring"
+        "Designed monitoring concept for bio\u2011acoustics signal capture and interpretation",
+        "Worked across sensing, signal processing, and evaluation metrics",
+        "Focused on practical deployment constraints and measurable outcomes",
+        "Iterative prototyping mindset: test, learn, refine"
       ]
     },
     {
@@ -138,27 +142,28 @@
       "headline": "Skills",
       "subheadline": "Hands-on across software, robotics, and systems",
       "bullets": [
-        "Programming: Python, C/C++, C#, SQL, R, MATLAB",
-        "Robotics/XR: ROS, MoveIt, Unity, Meta Quest",
-        "Hardware: Verilog, VHDL, RISC-V assembly",
-        "Web: HTML, CSS, JavaScript",
-        "Tools: Git, Jupyter, VS Code, Android Studio",
-        "Engineering: CST, LTspice, PowerWorld"
+        "Languages: Python \u2022 C/C++ \u2022 C# \u2022 JavaScript/HTML/CSS \u2022 MATLAB",
+        "Robotics/XR: ROS \u2022 MoveIt \u2022 Unity \u2022 Meta Quest \u2022 robot teleoperation workflows",
+        "AI/Automation: prompt engineering \u2022 Copilot workflows \u2022 evaluation + validation",
+        "Data/Research: study design \u2022 statistical analysis \u2022 mixed effects models \u2022 reporting",
+        "Tools: Git/GitHub \u2022 Overleaf \u2022 Confluence/SharePoint \u2022 Linux/CLI",
+        "Strengths: ownership \u2022 speed \u2022 clarity \u2022 stakeholder communication"
       ]
     },
     {
       "type": "content",
       "headline": "Awards & Recognition",
       "bullets": [
-        "AIIA Innovation Awards 2022 — State Finalist",
-        "Australian Defence Force Future Innovators Award 2021",
-        "Motorola Solutions Leader Scholarship 2023",
-        "Achieving Potential Access Scholarship 2022"
+        "Dean\u2019s Honours List \u2014 2022, 2023, 2024",
+        "Strong academic performance: GPA 3.906/4.00 \u2022 WAM 85.981",
+        "Published at ACM HRI 2025",
+        "Amazon-funded research contribution (XR + warehouse error correction)",
+        "Trusted to present/demonstrate GenAI to parliamentary committee"
       ]
     },
     {
       "type": "closing",
-      "headline": "Let’s connect",
+      "headline": "Let\u2019s connect",
       "subheadline": "Open to grad roles, research, and ambitious builds",
       "bullets": [
         "Email: advaykumar2004@gmail.com",
@@ -166,7 +171,7 @@
         "LinkedIn: Advay Kumar",
         "GitHub: AKoder123"
       ],
-      "note": "Tip: Shift + Space rewinds • Export PDF from the top bar"
+      "note": "Tip: Shift + Space rewinds \u2022 Export PDF from the top bar"
     }
   ]
 }

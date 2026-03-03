@@ -7,7 +7,9 @@
     slideEls: [],
     current: 0,
     ratios: new Map(),
-    toastTimer: null
+    toastTimer: null,
+    isProgrammatic: false,
+    progTimer: null
   };
 
   function showToast(msg, ms = 1800){
@@ -38,11 +40,15 @@
   }
 
   function linkifyText(str){
-    let s = escapeHtml(str);
+    // Escape first so we never inject raw HTML from content.json
+    const escaped = escapeHtml(String(str ?? ""));
 
-    // Email addresses
-    s = s.replace(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g, (m) => {
-      return `<a href="mailto:${m}" rel="noopener">${m}</a>`;
+    // Mask emails so URL linkification can’t corrupt the generated <a>
+    const emailMatches = [];
+    let s = escaped.replace(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g, (m) => {
+      const token = `__EMAIL_${emailMatches.length}__`;
+      emailMatches.push(m);
+      return token;
     });
 
     // Simple URLs (with or without protocol)
@@ -55,15 +61,10 @@
       return `<a href="${href}" target="_blank" rel="noopener">${raw}</a>`;
     });
 
-    // GitHub username pattern: "GitHub: USER"
-    s = s.replace(/GitHub:\s*([A-Za-z0-9-]{1,39})/g, (m, u) => {
-      return `GitHub: <a href="https://github.com/${u}" target="_blank" rel="noopener">${u}</a>`;
-    });
-
-    // Phone pattern: "Phone: +61 ..."
-    s = s.replace(/Phone:\s*([+0-9()\s-]{6,})/g, (m, p) => {
-      const tel = p.replace(/[^\d+]/g, "");
-      return `Phone: <a href="tel:${tel}" rel="noopener">${escapeHtml(p)}</a>`;
+    // Restore masked emails as mailto links
+    s = s.replace(/__EMAIL_(\d+)__/g, (_, n) => {
+      const email = emailMatches[Number(n)];
+      return `<a href="mailto:${email}" rel="noopener">${email}</a>`;
     });
 
     return s;
@@ -171,7 +172,7 @@
       if (Array.isArray(slide.bullets) && slide.bullets.length){
         const meta = document.createElement("div");
         meta.className = "metaCards";
-        slide.bullets.slice(0, 6).forEach((b, i) => {
+        slide.bullets.slice(0, 10).forEach((b, i) => {
           const c = document.createElement("div");
           c.className = "metaCard";
           c.innerHTML = linkifyText(b);
@@ -237,7 +238,7 @@
         if (!Array.isArray(bullets) || !bullets.length) return;
         const ul = document.createElement("ul");
         ul.className = "bullets bullets--one";
-        bullets.slice(0, 6).forEach((b, i) => {
+        bullets.slice(0, 10).forEach((b, i) => {
           const li = document.createElement("li");
           li.className = "bullet";
           li.appendChild(makeBulletIcon());
@@ -273,7 +274,7 @@
       if (slide.type === "closing" && Array.isArray(slide.bullets) && slide.bullets.length){
         const row = document.createElement("div");
         row.className = "ctaRow";
-        slide.bullets.slice(0, 6).forEach((b, i) => {
+        slide.bullets.slice(0, 10).forEach((b, i) => {
           const pill = document.createElement("div");
           pill.className = "ctaPill";
           pill.innerHTML = linkifyText(b);
@@ -285,7 +286,7 @@
       } else if (Array.isArray(slide.bullets) && slide.bullets.length){
         const ul = document.createElement("ul");
         ul.className = `bullets ${bulletLayoutClass(slide.bullets.length)}`.trim();
-        slide.bullets.slice(0, 6).forEach((b, i) => {
+        slide.bullets.slice(0, 10).forEach((b, i) => {
           const li = document.createElement("li");
           li.className = "bullet";
           li.appendChild(makeBulletIcon());
@@ -301,9 +302,25 @@
     }
 
     if (slide.note){
+      const raw = String(slide.note);
+      const urlMatch = raw.match(/(https?:\/\/[^\s]+|(?:[a-z0-9.-]+\.)+[a-z]{2,}(\/[^\s]+)?)/i);
+
       const note = document.createElement("div");
       note.className = "note";
-      note.innerHTML = linkifyText(slide.note);
+
+      if (urlMatch){
+        const url = urlMatch[1];
+        const href = /^https?:\/\//i.test(url) ? url : `https://${url}`;
+        const label = raw.replace(url, "").replace(/[:\-–]+\s*$/, "").trim();
+
+        note.innerHTML = `
+          <div class="note__label">${linkifyText(label || "Link")}</div>
+          <a class="note__link" href="${href}" target="_blank" rel="noopener">Open link →</a>
+        `;
+      } else {
+        note.innerHTML = linkifyText(raw);
+      }
+
       applyStagger(note, 20, 0.01);
       inner.appendChild(note);
     }
@@ -327,6 +344,14 @@
 
   function updateNav(){
     $("#currentIdx").textContent = String(state.current + 1);
+
+    const total = state.slideEls.length || 1;
+    const fill = $("#progressFill");
+    if (fill){
+      const pct = total <= 1 ? 100 : (state.current / (total - 1)) * 100;
+      fill.style.width = `${pct}%`;
+    }
+
     const dots = $("#dots");
     if (dots){
       [...dots.children].forEach((d, i) => d.classList.toggle("is-on", i === state.current));
@@ -337,9 +362,19 @@
     const next = clamp(idx, 0, state.slideEls.length - 1);
     state.current = next;
     updateNav();
+
+    const scroller = $("#scroller");
     const el = state.slideEls[next];
-    if (!el) return;
-    el.scrollIntoView({ behavior, block: "start" });
+    if (!el || !scroller) return;
+
+    state.isProgrammatic = true;
+    clearTimeout(state.progTimer);
+
+    const topOffset = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--topOffset")) || 0;
+    const top = el.offsetTop - topOffset;
+    scroller.scrollTo({ top: Math.max(0, top), behavior });
+
+    state.progTimer = setTimeout(() => { state.isProgrammatic = false; }, behavior === "smooth" ? 520 : 120);
   }
 
   function setupDots(){
@@ -347,8 +382,10 @@
     if (!dots) return;
     dots.innerHTML = "";
     state.slideEls.forEach((_, i) => {
-      const d = document.createElement("div");
+      const d = document.createElement("button");
       d.className = "dot";
+      d.type = "button";
+      d.setAttribute("aria-label", `Go to slide ${i + 1}`);
       if (i === 0) d.classList.add("is-on");
       d.addEventListener("click", () => goTo(i));
       dots.appendChild(d);
@@ -409,7 +446,7 @@
         }
       });
 
-      if (bestIdx !== state.current && best > 0.45){
+      if (!state.isProgrammatic && bestIdx !== state.current && best > 0.45){
         state.current = bestIdx;
         updateNav();
       }
