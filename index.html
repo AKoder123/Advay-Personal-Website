@@ -1,62 +1,51 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
-<meta content="dark light" name="color-scheme"/>
-<title>Loading…</title>
-<link href="styles.css" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advay Kumar - Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<!-- Background (cloned into #pdfStage during export) -->
-<div aria-hidden="true" class="bg">
-<div class="bg__noise"></div>
-<div class="bg__grid"></div>
-<div class="bg__orb bg__orb--a"></div>
-<div class="bg__orb bg__orb--b"></div>
-<div class="bg__orb bg__orb--c"></div>
-</div>
-<header class="topnav" id="topnav">
-<div class="topnav__left">
-<div class="brand" title="Home">
-<div aria-hidden="true" class="brand__mark">AK</div>
-<div class="brand__text">
-<div class="brand__title" id="deckTitle">…</div>
-<div class="brand__meta" id="deckTheme">…</div>
-</div>
-</div>
-</div>
-<div aria-label="Slide navigation" class="topnav__center">
-<button aria-label="Previous slide" class="iconbtn" id="prevBtn" title="Previous (← / Shift+Space)" type="button">
-<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M15.5 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-<div aria-live="polite" class="counter" id="counter">
-<span id="currentIdx">1</span><span class="counter__sep">/</span><span id="totalIdx">1</span>
-</div>
-<button aria-label="Next slide" class="iconbtn" id="nextBtn" title="Next (→ / Space)" type="button">
-<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M8.5 5l7 7-7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
+  <!-- Background -->
+  <div class="bg">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
 
-</div>
-<div class="topnav__right">
-<button class="pillbtn" id="exportPdfBtn" title="Export the deck to a multi-page PDF" type="button">
-<span aria-hidden="true" class="pillbtn__icon">
-<svg viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path><path d="M14 2v6h6" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path><path d="M8 13h8M8 17h8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg>
-</span>
-<span class="pillbtn__label" id="exportBtnLabel">Export PDF</span>
-</button>
-</div>
-<div aria-hidden="true" class="progress"><div class="progress__fill" id="progressFill"></div></div></header><aside aria-label="Slide dots" class="dotsRail"><div class="dots dots--rail" id="dots"></div></aside>
-<main class="scroller" id="scroller" tabindex="-1">
-<div aria-label="Web deck" class="slides" id="slides"></div>
-</main>
-<div aria-atomic="true" aria-live="polite" class="toast" id="toast" role="status"></div>
-<noscript>
-<div class="noscript">
-      This deck needs JavaScript enabled.
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <div class="nav-brand">AK</div>
+    <div class="nav-actions">
+      <button id="exportPdfBtn" type="button">Export PDF</button>
     </div>
-</noscript>
-<script src="app.js"></script>
+  </nav>
+
+  <!-- Progress Indicator -->
+  <div class="progress-bar">
+    <div class="progress-fill"></div>
+  </div>
+
+  <!-- Slide Counter -->
+  <div class="slide-counter">
+    <span class="current">1</span> / <span class="total">13</span>
+  </div>
+
+  <!-- Main Container -->
+  <main class="slide-container" id="slideContainer">
+    <!-- Slides will be injected here by app.js -->
+  </main>
+
+  <!-- Navigation Hints -->
+  <div class="nav-hints">
+    <span class="hint-key">SPACE</span> or <span class="hint-key">ARROWS</span> to navigate
+  </div>
+
+  <!-- PDF Export Stage (off-screen) -->
+  <div id="pdfStage"></div>
+
+  <script src="app.js"></script>
 </body>
 </html>
