@@ -35,11 +35,11 @@ function renderTitle(slide) {
             </div>
             <div class="panel-row">
               <span class="panel-key">GPA</span>
-              <span class="panel-val highlight" data-count="3.906" data-decimals="3">3.906</span>
+              <span class="panel-val highlight" data-count="3.909" data-decimals="3">3.906</span>
             </div>
             <div class="panel-row">
               <span class="panel-key">WAM</span>
-              <span class="panel-val highlight">85.981</span>
+              <span class="panel-val highlight">86.236</span>
             </div>
             <div class="panel-row">
               <span class="panel-key">Dean's Honours</span>
@@ -80,7 +80,7 @@ function renderEducation(slide) {
             <em>Graduating 2026</em>
           </div>
           <div class="gpa-block" data-animate data-delay="2">
-            <div class="gpa-num" data-count="3.906" data-decimals="3">3.906</div>
+            <div class="gpa-num" data-count="3.909" data-decimals="3">3.909</div>
             <div class="gpa-sub">GPA / 4.00</div>
           </div>
           <div class="honours-list" data-animate data-delay="3">
@@ -134,9 +134,9 @@ function renderEducation(slide) {
           <div class="gpa-track-wrap" data-animate data-delay="4">
             <div class="gpa-track-label">
               <span>GPA relative to maximum</span>
-              <span>97.65%</span>
+              <span>97.73%</span>
             </div>
-            <div class="gpa-track"><div class="gpa-fill" data-width="97.65"></div></div>
+            <div class="gpa-track"><div class="gpa-fill" data-width="97.73"></div></div>
           </div>
         </div>
       </div>
