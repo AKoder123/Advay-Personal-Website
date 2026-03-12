@@ -34,7 +34,7 @@ function renderTitle(slide) {
               <span class="panel-val">Monash University</span>
             </div>
             <div class="panel-row">
-              <span class="panel-key">GPA</span>
+              <span class="panel-key">GPA (4 point scale)</span>
               <span class="panel-val highlight" data-count="3.909" data-decimals="3">3.906</span>
             </div>
             <div class="panel-row">
