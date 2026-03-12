@@ -75,7 +75,7 @@ function renderEducation(slide) {
         <div class="edu-sidebar" data-animate data-delay="1">
           <div class="edu-uni">Monash University</div>
           <div class="edu-degree">
-            B.E. Electrical & Computer Systems Engineering<br>
+            B.E. Electrical & Computer Systems Engineering (Hons)<br>
             + Bachelor of Commerce<br>
             <em>Graduating 2026</em>
           </div>
