@@ -43,7 +43,7 @@ function renderTitle(slide) {
             </div>
             <div class="panel-row">
               <span class="panel-key">Dean's Honours</span>
-              <span class="panel-val">2022 · 2023 · 2024</span>
+              <span class="panel-val">2022·2023·2024</span>
             </div>
             <div class="panel-row">
               <span class="panel-key">Graduation</span>
