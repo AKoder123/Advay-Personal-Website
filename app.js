@@ -51,7 +51,7 @@ function renderTitle(slide) {
             </div>
             <div class="panel-row">
               <span class="panel-key">Published</span>
-              <span class="panel-val highlight">HRI 2025 · IEEE · ACM</span>
+              <span class="panel-val highlight">HRI 2025·IEEE·ACM</span>
             </div>
             <div class="panel-row">
               <span class="panel-key">Citizenship</span>
